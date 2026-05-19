@@ -25,11 +25,14 @@ export function HomeScreen() {
         <div>{statusLabel && <Chip>{statusLabel}</Chip>}{profile.region && <Chip>{profile.region}</Chip>}</div>
 
         <Link to="/ai" className="flex items-center gap-3 bg-brand text-white rounded-card px-4 py-4 mt-3">
-          <Icon icon="ri:sparkling-2-line" width={20} height={20} />
+          <Icon icon="ri:sparkling-2-line" width={20} height={20} aria-hidden />
           <span className="text-sm font-medium">Запитати в AI — напишіть питання…</span>
         </Link>
 
         <h2 className="text-sm font-semibold text-muted mt-5 mb-2">Рекомендовано вам</h2>
+        {recommended.length === 0 && (
+          <p className="text-sm text-muted">Ми ще додаємо послуги для вашого статусу.</p>
+        )}
         {recommended.map(a => {
           const cat = categories.find(c => c.id === a.category);
           return (
