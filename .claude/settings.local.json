@@ -15,7 +15,9 @@
       "Bash(git *)",
       "Bash(npx vite *)",
       "Bash(npm test *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Skill(superpowers:receiving-code-review)",
+      "Bash(node *)"
     ]
   }
 }

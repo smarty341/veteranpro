@@ -12,7 +12,7 @@ export function StatusScreen() {
       <p className="text-muted mb-5">Послуги та програми різняться залежно від статусу.</p>
       <div className="flex flex-col gap-3">
         {statuses.map(s => (
-          <button key={s.id} onClick={() => { setProfile({ status: s.id }); nav("/onboarding/region"); }} aria-label={s.short}>
+          <button key={s.id} type="button" onClick={() => { setProfile({ status: s.id }); nav("/onboarding/region"); }}>
             <Card className="text-left">
               <div className="text-lg font-semibold">{s.short} — {s.full}</div>
               <div className="text-sm text-muted mt-1">{s.description}</div>
