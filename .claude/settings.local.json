@@ -3,7 +3,19 @@
     "allow": [
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Skill(superpowers:writing-plans)"
+      "Skill(superpowers:writing-plans)",
+      "Bash(git checkout *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(timeout 20 npx vite --host 0.0.0.0)",
+      "Bash(echo \"EXIT CODE: $?\")",
+      "Bash(node -e \"const pkg = require\\('/root/app/package.json'\\); console.log\\(JSON.stringify\\(pkg, null, 2\\)\\);\")",
+      "Bash(git -C /root/app show 619616b:src/content/articles.generated.ts)",
+      "Bash(git -C /root/app show 619616b:.gitignore)",
+      "Bash(git *)",
+      "Bash(npx vite *)",
+      "Bash(npm test *)",
+      "Bash(npx tsc *)"
     ]
   }
 }
