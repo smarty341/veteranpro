@@ -1,11 +1,12 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 @import "./tokens.css";
 
 @font-face { font-family: "e-Ukraine"; font-weight: 300;
   src: url("/assets/fonts/e-Ukraine-Light.otf") format("opentype"); font-display: swap; }
 @font-face { font-family: "e-Ukraine"; font-weight: 400;
   src: url("/assets/fonts/e-Ukraine-Regular.otf") format("opentype"); font-display: swap; }
-@font-face { font-family: "e-Ukraine"; font-weight: 600;
+@font-face { font-family: "e-Ukraine"; font-weight: 500;
   src: url("/assets/fonts/e-Ukraine-Medium.otf") format("opentype"); font-display: swap; }
 
 html, body, #root { height: 100%; }

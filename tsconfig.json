@@ -14,6 +14,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    // skipLibCheck: workaround for ~50 spurious type errors from node_modules under pinned versions; revisit when deps are upgraded.
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] },
