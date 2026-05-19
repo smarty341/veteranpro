@@ -1,1 +1,3 @@
-export function App() { return <div className="p-6 text-brand">Ветеран PRO — bootstrap</div>; }
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+export function App() { return <RouterProvider router={router} />; }
