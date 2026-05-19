@@ -5,6 +5,7 @@ import { Chip } from "@/ui/components/Chip";
 import { IconTile } from "@/ui/components/IconTile";
 import { categories } from "@/content/categories";
 import { articles } from "@/content/articles.generated";
+import { stepsLabel } from "@/lib/plurals";
 
 export function CategoryScreen() {
   const { categoryId = "" } = useParams();
@@ -21,7 +22,7 @@ export function CategoryScreen() {
             <IconTile icon={cat?.icon ?? "ri:bookmark-line"} />
             <div className="flex-1">
               <div className="text-sm font-semibold">{a.title}</div>
-              <div className="text-xs text-muted">{a.statuses.map(s => <Chip key={s}>{s}</Chip>)}{a.steps ? ` · ${a.steps.length} кроки` : ""}</div>
+              <div className="text-xs text-muted">{a.statuses.map(s => <Chip key={s}>{s}</Chip>)}{a.steps ? ` · ${stepsLabel(a.steps.length)}` : ""}</div>
             </div>
             <span className="text-border text-lg">›</span>
           </Link>
