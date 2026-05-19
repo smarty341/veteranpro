@@ -1,7 +1,7 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { Shell } from "./Shell";
 
-// Lazy imports keep the chunk graph clean
+// Screen imports — convert to React.lazy() if/when individual chunks need to be split.
 import { LoginScreen }        from "@/features/onboarding/LoginScreen";
 import { StatusScreen }       from "@/features/onboarding/StatusScreen";
 import { RegionScreen }       from "@/features/onboarding/RegionScreen";
