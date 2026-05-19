@@ -1,5 +1,5 @@
 export const STORAGE_PREFIX = "vp-companion:";
-const SCHEMA = 1;
+export const SCHEMA = 1;
 
 export function saveSlice<T>(slice: string, value: T): void {
   try { localStorage.setItem(`${STORAGE_PREFIX}${slice}`, JSON.stringify({ schema: SCHEMA, data: value })); }

@@ -25,4 +25,12 @@ describe("storage", () => {
     expect(localStorage.getItem(`${STORAGE_PREFIX}profile`)).toBeNull();
     expect(localStorage.getItem("unrelated")).toBe("x");
   });
+
+  it("saveSlice survives a localStorage failure without throwing", () => {
+    const spy = vi.spyOn(Storage.prototype, "setItem").mockImplementationOnce(() => {
+      throw new DOMException("QuotaExceededError");
+    });
+    expect(() => saveSlice("profile", { status: "UBD" })).not.toThrow();
+    spy.mockRestore();
+  });
 });
