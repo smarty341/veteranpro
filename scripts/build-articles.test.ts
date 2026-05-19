@@ -79,4 +79,26 @@ statuses: [UBD]
     expect(out[0].region).toBeUndefined();
     expect(out[0].steps).toBeUndefined();
   });
+
+  it("rejects unknown status value", () => {
+    const dir = tmpDir();
+    writeFileSync(path.join(dir, "s.md"), `---
+id: x
+title: T
+category: social-protection
+statuses: [OVV]
+---
+body`);
+    expect(() => compileArticles(dir)).toThrow(/s\.md.*statuses.*OVV/);
+  });
+
+  it("reports the filename when YAML front-matter is malformed", () => {
+    const dir = tmpDir();
+    writeFileSync(path.join(dir, "broken.md"), `---
+id: [unclosed
+title: T
+---
+body`);
+    expect(() => compileArticles(dir)).toThrow(/broken\.md.*YAML parse error/);
+  });
 });

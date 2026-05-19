@@ -9,7 +9,10 @@ export function compileArticles(dir: string): Article[] {
   const files = readdirSync(dir).filter(f => f.endsWith(".md")).sort();
   return files.map(file => {
     const raw = readFileSync(path.join(dir, file), "utf8");
-    const { data, content } = matter(raw);
+    let parsed;
+    try { parsed = matter(raw); }
+    catch (e) { throw new Error(`${file}: YAML parse error — ${(e as Error).message}`); }
+    const { data, content } = parsed;
     const fail = (msg: string): never => { throw new Error(`${file}: ${msg}`); };
 
     const id = (typeof data.id === "string" && data.id) || fail("'id' is required and must be a string");
@@ -26,7 +29,7 @@ export function compileArticles(dir: string): Article[] {
       region: typeof data.region === "string" ? data.region : undefined,
       documents: Array.isArray(data.documents) ? (data.documents as unknown[]).map(String) : undefined,
       steps: Array.isArray(data.steps) ? (data.steps as unknown[]).map(String) : undefined,
-      contacts: typeof data.contacts === "string" ? data.contacts : undefined,
+      contacts: typeof data.contacts === "string" ? data.contacts.trim() : undefined,
       source: typeof data.source === "string" ? data.source : undefined,
       body: content.trim()
     };
