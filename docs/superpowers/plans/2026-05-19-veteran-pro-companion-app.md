@@ -1800,7 +1800,7 @@ test("Service detail shows title, documents, and adds to applications", async ()
   </MemoryRouter>);
   expect(screen.getByText("Грошова допомога УБД")).toBeInTheDocument();
   expect(screen.getByText("IBAN")).toBeInTheDocument();
-  await userEvent.click(screen.getByRole("button", { name: /додати в «мої заяви»/i }));
+  await userEvent.click(screen.getByRole("button", { name: /додати в «мої послуги»/i }));
   expect(useStore.getState().applications["a1"]).toBeDefined();
 });
 ```
