@@ -43,18 +43,19 @@ The artifact produced is a **mock-up suitable for pre-sale demos** — a polishe
 
 | Token | Hex | Role |
 |---|---|---|
-| `--vp-brand` | `#2D2926` | Primary text, dark surfaces, primary buttons (confirmed from `vet-pro.svg`, `min-veteran.svg`, `kmu.svg`) |
-| `--vp-beige` | `#E9E4E3` | Chips, icon tiles, subtle surfaces (confirmed from `vet-pro.svg`) |
+| `--vp-brand` | `#2D2926` | Primary text, dark surfaces, primary buttons (confirmed from `veteran_logo.svg`, `min-veteran.svg`, `kmu.svg`) |
+| `--vp-beige` | `#E9E4E3` | Icon tiles, subtle surfaces (confirmed from brand SVGs) |
 | `--vp-beige-2` | `#F4F0EE` | App background (derived light tint) |
 | `--vp-border` | `#D1CBCB` | Card and divider lines (confirmed) |
 | `--vp-mut` | `#6B6664` | Secondary text (derived) |
-| `--vp-olive` | `#757341` | Accent — progress bars, checkmarks, active-nav indicator (provided by owner) |
+| `--vp-olive` | `#757341` | Highlight accent — progress bars, checkmarks, active-nav indicator (provided by owner) |
+| `--vp-olive-soft` | `#B0AB75` | Secondary olive — status/region chips, accent surfaces (confirmed from the "PRO" badge in `veteran_logo.svg`) |
 | `--vp-radius` | `12px` | Standard corner radius for cards/buttons (matches site) |
 | `--vp-elevation` | `0 1px 3px rgba(0,0,0,.06)` | Card shadow (matches site's Material elevation tier 1) |
 
 - **Typography:** `e-Ukraine` (Light 300 / Regular 400 / Medium 600), bundled from `https://veteranpro.gov.ua/fonts/e-Ukraine/*.otf` at build time. Falls back to system sans-serif.
 - **Icons:** Remix Icons (`ri:*`) via the iconify SVG set — same family used by the site (`ri:hand-coin-line`, `ri:heart-add-line`, `ri:building-line`, `ri:bus-line`, `ri:file-copy-2-line`, `ri:graduation-cap-line`, `ri:shield-user-line`, `ri:basketball-fill`, `ri:refund-2-fill`, etc.). Bundled locally as SVG components; no runtime CDN call.
-- **Logos / images bundled locally from veteranpro.gov.ua:** `img/vet-pro.svg` (wordmark), `img/min-veteran.svg`, `img/kmu.svg`, `img/home-hero.svg`, `favicon.ico`.
+- **Logos / images bundled locally:** `assets/logo/veteran_logo.svg` (full "ВЕТЕРАН PRO" wordmark + olive PRO badge — primary brand mark supplied by the owner), plus `min-veteran.svg`, `kmu.svg`, `home-hero.svg`, `favicon.ico` (scraped from veteranpro.gov.ua).
 
 ### 2.2 Information architecture
 
@@ -131,8 +132,9 @@ src/
       retrieve.ts         keyword retrieval over articles
       provider.ts         demo-mode | real-mode adapter
 public/
-  assets/                 bundled vet-pro.svg, min-veteran.svg, kmu.svg,
-                          home-hero.svg, favicon.ico, e-Ukraine fonts, ri-* icons
+  assets/                 logo/veteran_logo.svg (primary brand mark),
+                          min-veteran.svg, kmu.svg, home-hero.svg,
+                          favicon.ico, e-Ukraine fonts, ri-* icons
 content/
   articles/               *.md files dropped here by the owner
 scripts/
