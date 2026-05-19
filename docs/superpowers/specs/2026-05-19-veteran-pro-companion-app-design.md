@@ -34,7 +34,7 @@ The artifact produced is a **mock-up suitable for pre-sale demos** — a polishe
 - Three end-to-end flows demonstrate without bugs in a 5-minute pre-sale demo:
   1. Onboard → browse catalog → open a service → read details.
   2. From a service, "Запитати в AI про цю послугу" → coherent answer citing the source article.
-  3. Add a service to "Мої заяви" → tick off steps → see progress update.
+  3. Add a service to "Мої послуги" → tick off steps → see progress update.
 - A `npm run reset-demo` action restores a clean state for the next demo.
 
 ## 2. User-facing design
@@ -62,7 +62,7 @@ The artifact produced is a **mock-up suitable for pre-sale demos** — a polishe
 Four-pillar bottom navigation, 74px tall (iPhone safe-area aware), labels + icons, active item marked with a 3px olive `--vp-olive` indicator above the icon:
 
 ```
-[ Каталог ]  [ Головна ]  [ AI ]  [ Мої заяви ]
+[ Каталог ]  [ Головна ]  [ AI ]  [ Мої послуги ]
 ```
 
 ### 2.3 Screens
@@ -72,12 +72,12 @@ Four-pillar bottom navigation, 74px tall (iPhone safe-area aware), labels + icon
 | 1 | **Splash / Diia-style login** | Skippable. "Увійти через Дія" (mock — any tap proceeds) and "Продовжити без входу" link. Polish for pre-sale; never collects credentials. |
 | 2 | **Onboarding — status** | Three large cards: УБД, ОІВВ, ЧСЗ. One selectable. |
 | 3 | **Onboarding — region** | Search/scroll list of Ukrainian oblasts; selection optional ("Пропустити" allowed). |
-| 4 | **Home (Головна)** | Greeting + status/region chips, "Запитати в AI" entry tile, "Рекомендовано вам" list of services filtered by status+region, snapshot of "Мої заяви" progress. |
+| 4 | **Home (Головна)** | Greeting + status/region chips, "Запитати в AI" entry tile, "Рекомендовано вам" list of services filtered by status+region, snapshot of "Мої послуги" progress. |
 | 5 | **Catalog (Каталог)** | 2-column grid of thematic categories with Remix-icon tiles. Mirrors the site's categories: Health & recovery, Social protection & finance, Housing & infrastructure, Transport & utilities, Documents & status, Education & work, Tax & administrative benefits, Sport & competitions, Grants & business, Services by region. |
 | 6 | **Category → service list** | Scrollable list of services in that category, filterable by status. |
-| 7 | **Service detail** | Title, status & category chips, "Хто може отримати", "Потрібні документи", "Кроки", "Контакти", plus two CTAs: "➕ Додати в Мої заяви" (primary, brand-black) and "Запитати в AI про цю послугу" (secondary, outlined). |
+| 7 | **Service detail** | Title, status & category chips, "Хто може отримати", "Потрібні документи", "Кроки", "Контакти", plus two CTAs: "➕ Додати в Мої послуги" (primary, brand-black) and "Запитати в AI про цю послугу" (secondary, outlined). |
 | 8 | **AI assistant (AI)** | Chat surface. User asks a question; the app retrieves the most relevant article(s) and answers, citing the source article title. Includes a few suggested-prompt chips. |
-| 9 | **My applications (Мої заяви)** | List of services the user has added. Each card shows a progress bar (olive `--vp-olive` fill) and checkable steps. Empty state nudges to the catalog. |
+| 9 | **My applications (Мої послуги)** | List of services the user has added. Each card shows a progress bar (olive `--vp-olive` fill) and checkable steps. Empty state nudges to the catalog. |
 | 10 | **Settings** | Reset demo, accessibility (font size, letter spacing, contrast — matching the site's `font-size-level-*`, `letter-space-level-*`, color-mode classes), language label (Ukrainian), version, link to veteranpro.gov.ua. |
 
 ### 2.4 Language
@@ -115,7 +115,7 @@ src/
     home/                 personalized hub
     catalog/              category grid, list, service detail
     ai/                   chat surface, retrieval, model adapter
-    applications/         "Мої заяви" list, checklist, progress
+    applications/         "Мої послуги" list, checklist, progress
     settings/             accessibility, reset, links
   content/
     articles.ts           generated bundle (compiled from content/articles/*.md)
@@ -223,7 +223,7 @@ Vitest + React Testing Library, organized per feature.
 - **Content pipeline:** `build-articles.ts` parses well-formed Markdown; rejects malformed front-matter with a useful error; handles missing optional fields; produces stable output.
 - **Retrieval:** Keyword scoring returns expected article for representative questions; status/region boost behaves correctly; empty-result path returns fallback.
 - **Store / storage:** Profile persists across reloads; applications mutate immutably; reset clears all `vp-companion:*` keys.
-- **UI behavior:** Onboarding required before Home; catalog filters by category; service detail "Add to Мої заяви" appears in `applications`; checking a step updates progress.
+- **UI behavior:** Onboarding required before Home; catalog filters by category; service detail "Add to Мої послуги" appears in `applications`; checking a step updates progress.
 - **PWA:** Manifest validates; service worker pre-caches the article bundle and key routes.
 - **Accessibility settings:** Font-size and letter-spacing levels apply to root, persist, and reset cleanly.
 

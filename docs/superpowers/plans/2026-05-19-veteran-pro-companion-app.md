@@ -710,7 +710,7 @@ import { MemoryRouter } from "react-router-dom";
 import { BottomNav } from "./BottomNav";
 test("BottomNav exposes four labelled links", () => {
   render(<MemoryRouter><BottomNav /></MemoryRouter>);
-  for (const label of ["Каталог", "Головна", "AI", "Мої заяви"]) {
+  for (const label of ["Каталог", "Головна", "AI", "Мої послуги"]) {
     expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
   }
 });
@@ -731,7 +731,7 @@ const items = [
   { to: "/catalog",      label: "Каталог",     icon: "ri:apps-2-line",        active: "ri:apps-2-fill" },
   { to: "/home",         label: "Головна",     icon: "ri:home-5-line",        active: "ri:home-5-fill" },
   { to: "/ai",           label: "AI",          icon: "ri:sparkling-2-line",   active: "ri:sparkling-2-fill" },
-  { to: "/applications", label: "Мої заяви",   icon: "ri:file-list-3-line",   active: "ri:file-list-3-fill" }
+  { to: "/applications", label: "Мої послуги",   icon: "ri:file-list-3-line",   active: "ri:file-list-3-fill" }
 ];
 
 export function BottomNav() {
@@ -1839,7 +1839,7 @@ export function ServiceDetailScreen() {
         {article.steps && <Card className="mt-3"><b className="block mb-1">Кроки</b><ol className="text-sm text-muted list-decimal ml-5">{article.steps.map(s => <li key={s}>{s}</li>)}</ol></Card>}
         {article.contacts && <Card className="mt-3"><b className="block mb-1">Контакти</b><div className="text-sm text-muted whitespace-pre-line">{article.contacts}</div></Card>}
         <div className="mt-4 flex flex-col gap-3">
-          <Button onClick={() => { addApplication(article.id); nav("/applications"); }}>➕ Додати в «Мої заяви»</Button>
+          <Button onClick={() => { addApplication(article.id); nav("/applications"); }}>➕ Додати в «Мої послуги»</Button>
           <Button variant="outline" onClick={() => nav(`/ai?q=${encodeURIComponent(article.title)}`)}>Запитати в AI про цю послугу</Button>
         </div>
       </ScreenContainer>
@@ -1923,7 +1923,7 @@ export function ApplicationsScreen() {
 
   if (entries.length === 0) return (
     <>
-      <Header title="Мої заяви" />
+      <Header title="Мої послуги" />
       <ScreenContainer>
         <p className="text-muted">У вас ще немає заяв. Додайте першу з каталогу.</p>
         <Link to="/catalog" className="inline-block mt-4 underline text-brand">До каталогу →</Link>
@@ -1933,7 +1933,7 @@ export function ApplicationsScreen() {
 
   return (
     <>
-      <Header title="Мої заяви" />
+      <Header title="Мої послуги" />
       <ScreenContainer>
         {entries.map(({ article, entry }) => {
           const steps = article.steps ?? [];
@@ -2616,7 +2616,7 @@ Expected: manifest JSON; HTML with theme-color and apple-touch-icon.
 In Safari on iPhone, open the URL → Share → **Add to Home Screen** → Add. Confirm:
 - App icon appears with the Ветеран PRO wordmark.
 - Tap the icon → app launches fullscreen.
-- Walk through: Login → УБД → Полтавська область → Home → Catalog → Service → "Додати в Мої заяви" → check off two steps → AI tab → ask "лікування" → reply cites a source.
+- Walk through: Login → УБД → Полтавська область → Home → Catalog → Service → "Додати в Мої послуги" → check off two steps → AI tab → ask "лікування" → reply cites a source.
 - Toggle airplane mode → demo flows still work (catalog/applications/settings/onboarding); only AI in real mode fails.
 
 - [ ] **Step 5: Commit deploy metadata**
