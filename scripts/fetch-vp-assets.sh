@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Resolve to repo root so relative paths (assets/, public/) work regardless of CWD.
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 BASE="https://veteranpro.gov.ua"
 DEST="public/assets"
 mkdir -p "$DEST/fonts" "$DEST/logo" "$DEST/img" public/icons
