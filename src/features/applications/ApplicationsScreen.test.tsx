@@ -14,16 +14,26 @@ test("empty state nudges to catalog", () => {
   expect(screen.getByRole("link", { name: /до каталогу/i })).toBeInTheDocument();
 });
 
-test("ticking a step updates progress and persists", async () => {
+test("ticking the service marks it as received and persists", async () => {
   useStore.getState().addApplication("a1");
   render(<MemoryRouter><ApplicationsScreen /></MemoryRouter>);
-  await userEvent.click(screen.getByRole("checkbox", { name: "Зібрати" }));
-  expect(screen.getByText(/виконано 1 з 3/i)).toBeInTheDocument();
-  expect(useStore.getState().applications["a1"].stepsCompleted).toEqual([0]);
+  const cb = screen.getByRole("checkbox", { name: /Грошова допомога УБД/i });
+  expect(cb).toHaveAttribute("aria-checked", "false");
+  await userEvent.click(cb);
+  expect(cb).toHaveAttribute("aria-checked", "true");
+  expect(useStore.getState().applications["a1"].received).toBe(true);
+});
+
+test("ticking again unmarks the service", async () => {
+  useStore.getState().addApplication("a1");
+  useStore.getState().toggleReceived("a1");
+  render(<MemoryRouter><ApplicationsScreen /></MemoryRouter>);
+  await userEvent.click(screen.getByRole("checkbox", { name: /Грошова допомога УБД/i }));
+  expect(useStore.getState().applications["a1"].received).toBe(false);
 });
 
 test("missing article id is silently skipped (data drift safety)", () => {
-  useStore.setState({ applications: { ghost: { addedAt: 0, stepsCompleted: [] } } });
+  useStore.setState({ applications: { ghost: { addedAt: 0, received: false } } });
   render(<MemoryRouter><ApplicationsScreen /></MemoryRouter>);
   expect(screen.getByText(/ще немає заяв/i)).toBeInTheDocument();
 });

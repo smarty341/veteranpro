@@ -3,7 +3,7 @@ import type { Status } from "@/content/types";
 import { clearAll, loadSlice, saveSlice } from "./storage";
 
 export interface Profile { status: Status | null; region?: string; interests?: string[]; didOnboard: boolean; didMockLogin: boolean }
-export interface AppEntry { addedAt: number; stepsCompleted: number[] }
+export interface AppEntry { addedAt: number; received: boolean }
 export interface Settings { fontLevel: 1 | 2 | 3; spacingLevel: 1 | 2 | 3; contrastMode: "standard" | "high" }
 
 interface State {
@@ -13,7 +13,7 @@ interface State {
   setProfile: (p: Partial<Profile>) => void;
   addApplication: (articleId: string) => void;
   removeApplication: (articleId: string) => void;
-  toggleStep: (articleId: string, stepIdx: number) => void;
+  toggleReceived: (articleId: string) => void;
   setSettings: (s: Partial<Settings>) => void;
   markMockLoggedIn: () => void;
   resetDemo: () => void;
@@ -32,7 +32,7 @@ export const useStore = create<State>((set, get) => ({
     set({ profile: next }); saveSlice("profile", next);
   },
   addApplication: (id) => {
-    const apps = { ...get().applications, [id]: get().applications[id] ?? { addedAt: Date.now(), stepsCompleted: [] } };
+    const apps = { ...get().applications, [id]: get().applications[id] ?? { addedAt: Date.now(), received: false } };
     set({ applications: apps }); saveSlice("applications", apps);
   },
   removeApplication: (id) => {
@@ -40,11 +40,9 @@ export const useStore = create<State>((set, get) => ({
     delete apps[id];
     set({ applications: apps }); saveSlice("applications", apps);
   },
-  toggleStep: (id, idx) => {
+  toggleReceived: (id) => {
     const cur = get().applications[id]; if (!cur) return;
-    const has = cur.stepsCompleted.includes(idx);
-    const stepsCompleted = has ? cur.stepsCompleted.filter(i => i !== idx) : [...cur.stepsCompleted, idx].sort((a, b) => a - b);
-    const apps = { ...get().applications, [id]: { ...cur, stepsCompleted } };
+    const apps = { ...get().applications, [id]: { ...cur, received: !cur.received } };
     set({ applications: apps }); saveSlice("applications", apps);
   },
   setSettings: (s) => {

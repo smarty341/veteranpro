@@ -13,19 +13,18 @@ describe("store", () => {
     expect(p.didOnboard).toBe(true);
   });
 
-  it("addApplication initialises empty progress", () => {
+  it("addApplication initialises with received=false", () => {
     useStore.getState().addApplication("ubd-money-help");
-    expect(useStore.getState().applications["ubd-money-help"].stepsCompleted).toEqual([]);
+    expect(useStore.getState().applications["ubd-money-help"].received).toBe(false);
   });
 
-  it("toggleStep adds and removes step indices", () => {
+  it("toggleReceived flips the boolean", () => {
     const s = useStore.getState();
     s.addApplication("ubd-money-help");
-    s.toggleStep("ubd-money-help", 0);
-    s.toggleStep("ubd-money-help", 1);
-    expect(useStore.getState().applications["ubd-money-help"].stepsCompleted).toEqual([0, 1]);
-    s.toggleStep("ubd-money-help", 0);
-    expect(useStore.getState().applications["ubd-money-help"].stepsCompleted).toEqual([1]);
+    s.toggleReceived("ubd-money-help");
+    expect(useStore.getState().applications["ubd-money-help"].received).toBe(true);
+    s.toggleReceived("ubd-money-help");
+    expect(useStore.getState().applications["ubd-money-help"].received).toBe(false);
   });
 
   it("resetDemo clears profile, applications, and settings — in memory and in storage", () => {
