@@ -26,6 +26,33 @@ Netlify returns a Production URL like `https://veteranpro-companion.netlify.app`
 3. Netlify reads `netlify.toml` automatically: build command `npm run build`, publish `dist`, functions `netlify/functions`. No further config.
 4. Every push to the main branch deploys.
 
+## Option C0 — GitHub Pages (free, host on GitHub itself, demo-mode AI)
+
+Configured. A workflow at `.github/workflows/deploy-pages.yml` builds with the right subpath, copies `index.html` to `404.html` for SPA fallback, and publishes to GitHub Pages on every push.
+
+### One-time setup
+
+1. Create a new public repository on GitHub (e.g. `veteranpro-companion`).
+2. On this machine, add the remote and push:
+   ```bash
+   cd /path/to/app
+   git remote add origin git@github.com:<your-username>/veteranpro-companion.git
+   git branch -M main          # GitHub default; harmless if already main
+   git push -u origin main
+   ```
+3. In the GitHub repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+4. The workflow runs automatically on the push. After ~1 minute the Actions tab shows a green check and the Pages section shows the live URL: `https://<your-username>.github.io/veteranpro-companion/`.
+
+Subsequent pushes to `main` redeploy automatically.
+
+### How the subpath works
+
+The Vite config reads `BASE_PATH` from the environment; the workflow sets it to `/<repo-name>/`. React Router uses the same value as its `basename`. PWA manifest icons + `start_url` + `scope` are all rebased. The `404.html` ensures any direct URL load (e.g. opening `/catalog` from a bookmark) still hits the SPA.
+
+### iPhone install on a subpath URL
+
+Same as for the other hosts: open the GitHub Pages URL in Safari → Share → Add to Home Screen. The PWA respects the subpath; offline caching includes the full bundle under that path.
+
 ## Option C — Cloudflare Pages (static, demo-mode AI)
 
 Cloudflare Pages serves the static `dist/` bundle and reads the same `public/_redirects` file for SPA fallback. **No code changes needed.** Real Claude AI is not enabled in this path (requires the Workers port — see "Real Claude on Cloudflare Workers" below).

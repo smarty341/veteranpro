@@ -30,4 +30,7 @@ export const router = createBrowserRouter([
     ]
   },
   { path: "*", element: <Navigate to="/" replace /> }
-]);
+], {
+  // Mirrors Vite's `base` — "/" for root deploys, "/repo-name/" on GitHub Pages.
+  basename: import.meta.env.BASE_URL.replace(/\/$/, "") || "/"
+});
