@@ -26,6 +26,43 @@ Netlify returns a Production URL like `https://veteranpro-companion.netlify.app`
 3. Netlify reads `netlify.toml` automatically: build command `npm run build`, publish `dist`, functions `netlify/functions`. No further config.
 4. Every push to the main branch deploys.
 
+## Option C — Cloudflare Pages (static, demo-mode AI)
+
+Cloudflare Pages serves the static `dist/` bundle and reads the same `public/_redirects` file for SPA fallback. **No code changes needed.** Real Claude AI is not enabled in this path (requires the Workers port — see "Real Claude on Cloudflare Workers" below).
+
+### Quick deploy via Wrangler CLI
+
+```bash
+# 1. Install Wrangler globally (one-time)
+npm install -g wrangler
+
+# 2. Log into Cloudflare (opens browser; one-time)
+wrangler login
+
+# 3. Build the static bundle
+cd /path/to/app
+npm run build
+
+# 4. Deploy. First run creates the project.
+wrangler pages deploy dist --project-name veteranpro-companion --branch main
+```
+
+Wrangler returns a Production URL like `https://veteranpro-companion.pages.dev`. Subsequent deploys reuse the project.
+
+### Git-connected continuous deploy
+
+1. Push the repo to GitHub/GitLab.
+2. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git** → pick the repo.
+3. Build settings:
+   - **Framework preset:** `Vite`
+   - **Build command:** `npm run build`
+   - **Build output directory:** `dist`
+4. Every push to `main` deploys.
+
+### Real Claude on Cloudflare Workers (optional, post-MVP)
+
+The current `netlify/functions/ai.ts` ports to a Cloudflare Pages Function in ~30 lines (Workers `fetch` handler instead of Netlify `Handler`). When you want this, ask and I'll write `functions/api/ai.ts`. Then set `ANTHROPIC_API_KEY` in the Pages project's environment variables and `VITE_AI_ENDPOINT=/api/ai` in the build env.
+
 ## Optional: Enable real Claude AI
 
 The app ships with a local, offline demo AI. To turn on real Claude:
