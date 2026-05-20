@@ -9,15 +9,18 @@ const items = [
   { to: "/applications", label: "Мої послуги", icon: "ri:file-list-3-line", active: "ri:file-list-3-fill" }
 ];
 
+// No fixed height on the nav: items set their own min-height, and env(safe-area-inset-bottom)
+// is added BELOW the content area instead of being absorbed into a fixed box.
+// This keeps icons + labels their intended size in both Safari and PWA standalone mode.
 export function BottomNav() {
   return (
-    <nav className="bg-white border-t border-beige h-[74px] pb-[env(safe-area-inset-bottom)] flex">
+    <nav className="bg-white border-t border-beige flex pb-[env(safe-area-inset-bottom)]">
       {items.map(it => (
         <NavLink
           key={it.to}
           to={it.to}
           className={({ isActive }) =>
-            `flex-1 relative flex flex-col items-center justify-center gap-1 text-[12px] ${
+            `flex-1 relative flex flex-col items-center justify-center gap-1 min-h-[64px] py-2 text-[12px] ${
               isActive ? "text-brand font-semibold" : "text-[#a39e9b] font-medium"
             }`
           }
