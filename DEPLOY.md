@@ -110,6 +110,95 @@ The Netlify function at `netlify/functions/ai.ts` calls `https://api.anthropic.c
 
 > **Regenerating icons:** PWA icons (`public/icons/icon-{192,512,512-maskable}.png` and `apple-touch-icon.png`) are generated from the wordmark SVG by `scripts/gen-icons.mjs` — run `node scripts/gen-icons.mjs` after replacing the wordmark to refresh them.
 
+## Option D — Capacitor native shell (sideload to iPhone via Xcode)
+
+This wraps the existing React app in a native iOS (and optionally Android) shell. The app installs from Xcode like any other iOS app — proper native splash, app icon in the dock, App Switcher card, no Safari chrome. **All editing still happens on the Linux box.** Xcode is only a build-and-sign tool.
+
+### What's already configured in this repo
+
+- `@capacitor/core`, `@capacitor/cli`, `@capacitor/ios`, `@capacitor/android` — native shell runtime
+- `@capacitor/haptics` — wired into the primary `<Button>` for a light tap feedback (no-op on web)
+- `@capacitor/status-bar`, `@capacitor/splash-screen` — branded launch experience
+- `capacitor.config.ts` — app id `ua.gov.veteranpro.companion`, brand colors, plugin config
+- `scripts/build-ios.sh` — one-command Mac-side rebuild
+
+### First-time setup (on the Mac, once)
+
+You need a Mac for the build step. Borrow / rent / use a colleague's — anything from a 2017 Mac mini upward works.
+
+```bash
+# 1. Install Xcode (App Store) and the CLI tools
+xcode-select --install
+
+# 2. Install CocoaPods (native dep manager iOS uses)
+sudo gem install cocoapods
+
+# 3. Clone your repo on the Mac
+git clone git@github.com:smarty341/veteranpro.git
+cd veteranpro
+
+# 4. Install JS dependencies
+npm install
+
+# 5. Create the iOS Capacitor project (one-time; commits the ios/ folder)
+npx cap add ios
+git add ios && git commit -m "chore: add iOS Capacitor platform" && git push
+
+# 6. (Optional) Same for Android
+npx cap add android
+git add android && git commit -m "chore: add Android Capacitor platform" && git push
+```
+
+### Ongoing build loop (every time you want a new build on your iPhone)
+
+```bash
+git pull
+./scripts/build-ios.sh
+```
+
+The script runs the Vite build, copies output into the iOS project, runs `pod install`, and opens Xcode at the workspace. In Xcode:
+
+1. **Top-left device picker** → pick a Simulator (free) or your connected iPhone.
+2. **⌘+R** to build and run.
+
+### Signing for a real device (first time only)
+
+In Xcode:
+
+1. Select the `App` project in the left sidebar.
+2. Go to **Signing & Capabilities**.
+3. Check **Automatically manage signing**.
+4. Set **Team** to your personal Apple ID (or paid Developer Program account).
+5. The Bundle Identifier is already `ua.gov.veteranpro.companion`.
+
+With a **free Apple ID**: the build is signed with a 7-day certificate. After 7 days the app on the phone fails to launch and you must rebuild via `./scripts/build-ios.sh` and reinstall.
+
+With a **paid $99/yr Apple Developer Program** account: no expiry; you can also upload to TestFlight to share with up to 100 internal testers without needing the cable.
+
+### Live-reload during active development
+
+For iterative work, point the iOS app at your Linux dev server instead of the bundled `dist/`:
+
+```bash
+# On the Linux box (this machine):
+npm run dev    # Vite at http://10.0.7.106:5173
+
+# On the Mac:
+npx cap run ios -l --external --host 10.0.7.106
+```
+
+This installs an iOS app that hot-reloads as you save files on Linux. ⌘+S in your editor → iPhone updates within ~1 second.
+
+### Updating native plugin code
+
+After installing or upgrading a `@capacitor/*` plugin (any change to `package.json`), run `./scripts/build-ios.sh` — it includes `pod install` which picks up the new pod.
+
+If you only changed React/CSS code, you can skip `pod install`:
+
+```bash
+npm run build && npx cap copy ios && open ios/App/App.xcworkspace
+```
+
 ## 5-minute demo walkthrough
 
 Use this script to sanity-check the install before showing it to anyone:

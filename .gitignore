@@ -3,3 +3,14 @@ node_modules
 dist
 .netlify
 src/content/articles.generated.ts
+
+# Capacitor iOS/Android build artifacts
+ios/App/App/public/
+ios/App/Pods/
+ios/App/build/
+ios/App/Podfile.lock
+ios/DerivedData/
+android/.gradle/
+android/app/build/
+android/build/
+android/app/src/main/assets/public/

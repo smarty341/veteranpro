@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
+import { tapLight } from "@/lib/haptics";
 
 type Variant = "primary" | "outline";
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant };
@@ -10,9 +11,13 @@ const styles: Record<Variant, string> = {
   outline: "bg-white text-brand border-[1.5px] border-brand"
 };
 
-export function Button({ variant = "primary", className = "", children, ...rest }: Props) {
+export function Button({ variant = "primary", className = "", children, onClick, ...rest }: Props) {
   return (
-    <button className={`${base} ${styles[variant]} ${className}`} {...rest}>
+    <button
+      className={`${base} ${styles[variant]} ${className}`}
+      onClick={(e) => { tapLight(); onClick?.(e); }}
+      {...rest}
+    >
       {children}
     </button>
   );

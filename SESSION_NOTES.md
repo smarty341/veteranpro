@@ -2,7 +2,7 @@
 
 Working continuation document. Read this first when picking up the project in a fresh session.
 
-**Last updated:** 2026-05-20 · main @ `89c5430`
+**Last updated:** 2026-05-20 · main @ post-Capacitor commit (see `git log`)
 
 ---
 
@@ -17,6 +17,7 @@ The MVP is built, deployed, and demo-ready. Live on iPhone home-screen via PWA i
 - **Tests:** 61 passing across 26 files
 - **Lint:** clean (`tsc --noEmit`)
 - **Build target:** static SPA + optional Netlify/CF function for real Claude AI; demo-mode AI is the default
+- **Capacitor native shell:** configured but iOS/Android folders not yet generated (needs `npx cap add ios` on a Mac — first-time step). See `DEPLOY.md` Option D for the sideload workflow.
 
 ## What this project is
 
@@ -55,6 +56,7 @@ Each step persists to `localStorage`. Settings → "Скинути демо" cle
 - sharp for icon generation (`scripts/gen-icons.mjs`)
 - React Markdown for article body rendering
 - Optional: @netlify/functions for real-AI proxy
+- Optional: @capacitor/{core,cli,ios,android,haptics,status-bar,splash-screen} for native shell
 
 ## Directory map
 
