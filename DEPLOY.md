@@ -44,7 +44,7 @@ The Netlify function at `netlify/functions/ai.ts` calls `https://api.anthropic.c
 3. The app icon appears with the Ветеран PRO branding.
 4. Tap to launch — runs full-screen, offline-capable. Only the AI chat in real mode needs network.
 
-> **Note on icons:** The current `public/icons/` files are 1×1 pixel placeholders. Replace `public/icons/icon-192.png`, `public/icons/icon-512.png`, and `public/icons/apple-touch-icon.png` with properly sized artwork before the first public release. The 1×1 placeholders will produce a blank icon on the iPhone home screen.
+> **Regenerating icons:** PWA icons (`public/icons/icon-{192,512,512-maskable}.png` and `apple-touch-icon.png`) are generated from the wordmark SVG by `scripts/gen-icons.mjs` — run `node scripts/gen-icons.mjs` after replacing the wordmark to refresh them.
 
 ## 5-minute demo walkthrough
 

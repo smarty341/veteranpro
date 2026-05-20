@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/ui/components/Header";
 import { ScreenContainer } from "@/ui/components/ScreenContainer";
 import { Card } from "@/ui/components/Card";
@@ -5,6 +6,7 @@ import { Button } from "@/ui/components/Button";
 import { useStore } from "@/lib/store";
 
 export function SettingsScreen() {
+  const nav = useNavigate();
   const { settings, setSettings, resetDemo } = useStore();
 
   return (
@@ -56,7 +58,7 @@ export function SettingsScreen() {
         </Card>
         <Card className="mb-3">
           <b className="block mb-2">Демо</b>
-          <Button variant="outline" onClick={() => resetDemo()}>Скинути демо</Button>
+          <Button variant="outline" onClick={() => { resetDemo(); nav("/"); }}>Скинути демо</Button>
         </Card>
         <p className="text-xs text-muted mt-4">v0.1 · <a href="https://veteranpro.gov.ua" className="underline">veteranpro.gov.ua</a></p>
       </ScreenContainer>

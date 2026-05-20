@@ -21,7 +21,14 @@ export const handler: Handler = async (event) => {
   };
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
-    headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "Content-Type": "application/json" },
+    headers: {
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+      // Enables `cache_control: { type: "ephemeral" }` on the system + corpus blocks
+      // for older API versions; harmless when prompt caching is GA.
+      "anthropic-beta": "prompt-caching-2024-07-31",
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(body)
   });
   if (!res.ok) return { statusCode: res.status, body: await res.text() };
