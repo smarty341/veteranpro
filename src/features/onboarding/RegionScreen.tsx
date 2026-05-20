@@ -9,7 +9,7 @@ export function RegionScreen() {
   const [q, setQ] = useState("");
   const filtered = regions.filter(r => r.toLowerCase().includes(q.toLowerCase()));
   return (
-    <div className="min-h-screen px-5 py-8 bg-beige-soft">
+    <div className="min-h-screen px-5 pt-[calc(env(safe-area-inset-top)+2rem)] pb-[calc(env(safe-area-inset-bottom)+2rem)] bg-beige-soft">
       <h1 className="text-2xl font-semibold mb-1">Ваш регіон</h1>
       <p className="text-muted mb-4">Допоможе показати регіональні програми та послуги.</p>
       <input value={q} onChange={e => setQ(e.target.value)} aria-label="Пошук регіону" placeholder="Пошук області" className="w-full rounded-card border border-border bg-white px-4 py-3 text-sm mb-3" />

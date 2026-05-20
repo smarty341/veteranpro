@@ -3,7 +3,7 @@ import { asset } from "@/lib/asset";
 type Props = { title?: string; onBack?: () => void; onGear?: () => void };
 export function Header({ title, onBack, onGear }: Props) {
   return (
-    <header className="flex items-center justify-between px-5 pt-5 pb-2 bg-white border-b border-beige">
+    <header className="flex items-center justify-between px-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] pb-2 bg-white border-b border-beige">
       <div className="flex items-center gap-3">
         {onBack && <button aria-label="Назад" onClick={onBack} className="text-2xl leading-none">‹</button>}
         {title ? <h1 className="text-xl font-semibold">{title}</h1>

@@ -7,7 +7,7 @@ export function StatusScreen() {
   const nav = useNavigate();
   const setProfile = useStore(s => s.setProfile);
   return (
-    <div className="min-h-screen px-5 py-8 bg-beige-soft">
+    <div className="min-h-screen px-5 pt-[calc(env(safe-area-inset-top)+2rem)] pb-[calc(env(safe-area-inset-bottom)+2rem)] bg-beige-soft">
       <h1 className="text-2xl font-semibold mb-1">Оберіть свій статус</h1>
       <p className="text-muted mb-5">Послуги та програми різняться залежно від статусу.</p>
       <div className="flex flex-col gap-3">
