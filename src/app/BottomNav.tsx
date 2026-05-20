@@ -11,7 +11,7 @@ const items = [
 
 export function BottomNav() {
   return (
-    <nav className="bg-white border-t border-beige h-[84px] pt-3 pb-[env(safe-area-inset-bottom)] flex">
+    <nav className="bg-white border-t border-beige h-[74px] pb-[env(safe-area-inset-bottom)] flex">
       {items.map(it => (
         <NavLink
           key={it.to}
