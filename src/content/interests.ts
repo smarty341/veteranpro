@@ -12,7 +12,11 @@ export const interests: Interest[] = [
   { id: "courses",   nameUa: "Курси",      categories: ["education"] },
   { id: "discounts", nameUa: "Знижки",     categories: ["tax", "transport"] },
   { id: "treatment", nameUa: "Лікування",  categories: ["health"] },
-  { id: "housing",   nameUa: "Житло",      categories: ["housing"] }
+  { id: "housing",   nameUa: "Житло",      categories: ["housing"] },
+  { id: "events",    nameUa: "Події",      categories: ["sport", "regional"] },
+  { id: "health",    nameUa: "Здоров'я",   categories: ["health"] },
+  { id: "meetings",  nameUa: "Зустрічі",   categories: ["regional", "sport"] },
+  { id: "grants",    nameUa: "Гранти",     categories: ["grants"] }
 ];
 
 export const validInterestIds = new Set(interests.map(i => i.id));

@@ -5,7 +5,11 @@ import { interests } from "@/content/interests";
 import { useStore } from "@/lib/store";
 
 // Word-cloud-style varied sizes for visual interest. Index aligns with interests[].
-const SIZES = ["text-3xl", "text-2xl", "text-4xl", "text-2xl"] as const;
+// Pattern alternates bigger/smaller so the cloud reads as organic, not a grid.
+const SIZES = [
+  "text-3xl", "text-2xl", "text-4xl", "text-2xl",
+  "text-xl",  "text-3xl", "text-2xl", "text-xl"
+] as const;
 
 export function InterestsScreen() {
   const nav = useNavigate();
