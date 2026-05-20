@@ -2,7 +2,7 @@ import { create } from "zustand";
 import type { Status } from "@/content/types";
 import { clearAll, loadSlice, saveSlice } from "./storage";
 
-export interface Profile { status: Status | null; region?: string; didOnboard: boolean; didMockLogin: boolean }
+export interface Profile { status: Status | null; region?: string; interests?: string[]; didOnboard: boolean; didMockLogin: boolean }
 export interface AppEntry { addedAt: number; stepsCompleted: number[] }
 export interface Settings { fontLevel: 1 | 2 | 3; spacingLevel: 1 | 2 | 3; contrastMode: "standard" | "high" }
 

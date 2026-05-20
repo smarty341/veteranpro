@@ -5,6 +5,7 @@ import { Shell } from "./Shell";
 import { LoginScreen }        from "@/features/onboarding/LoginScreen";
 import { StatusScreen }       from "@/features/onboarding/StatusScreen";
 import { RegionScreen }       from "@/features/onboarding/RegionScreen";
+import { InterestsScreen }    from "@/features/onboarding/InterestsScreen";
 import { HomeScreen }         from "@/features/home/HomeScreen";
 import { CatalogScreen }      from "@/features/catalog/CatalogScreen";
 import { CategoryScreen }     from "@/features/catalog/CategoryScreen";
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
   { path: "/",                   element: <LoginScreen /> },
   { path: "/onboarding/status",  element: <StatusScreen /> },
   { path: "/onboarding/region",  element: <RegionScreen /> },
+  { path: "/onboarding/interests", element: <InterestsScreen /> },
   {
     element: <Shell />,
     children: [

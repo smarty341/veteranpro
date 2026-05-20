@@ -6,6 +6,7 @@ import { Chip } from "@/ui/components/Chip";
 import { IconTile } from "@/ui/components/IconTile";
 import { categories } from "@/content/categories";
 import { statuses } from "@/content/statuses";
+import { interests as INTERESTS } from "@/content/interests";
 import { articles } from "@/content/articles.generated";
 import { useStore } from "@/lib/store";
 import { stepsLabel } from "@/lib/plurals";
@@ -14,7 +15,14 @@ export function HomeScreen() {
   const nav = useNavigate();
   const { profile } = useStore();
   const statusLabel = statuses.find(s => s.id === profile.status)?.short;
-  const recommended = (profile.status ? articles.filter(a => a.statuses.includes(profile.status!)) : articles).slice(0, 5);
+  // Recommendation filter: status AND (if interests chosen) categories from those interests.
+  const interestCategories = new Set(
+    (profile.interests ?? []).flatMap(id => INTERESTS.find(it => it.id === id)?.categories ?? [])
+  );
+  const recommended = articles
+    .filter(a => !profile.status || a.statuses.includes(profile.status))
+    .filter(a => interestCategories.size === 0 || interestCategories.has(a.category))
+    .slice(0, 5);
 
   return (
     <>
