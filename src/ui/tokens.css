@@ -10,3 +10,5 @@
   --vp-elevation: 0 1px 3px rgba(0,0,0,.06);
   --vp-elevation-lg: 0 14px 38px rgba(0,0,0,.14);
 }
+
+.contrast-high { --vp-brand: #000000; --vp-mut: #1a1b1f; --vp-border: #6B6664; }
