@@ -18,3 +18,15 @@ test("'Скинути демо' clears everything", async () => {
   await userEvent.click(screen.getByRole("button", { name: /скинути демо/i }));
   expect(useStore.getState().profile.status).toBeNull();
 });
+
+test("changing spacing level updates store", async () => {
+  render(<MemoryRouter><SettingsScreen /></MemoryRouter>);
+  await userEvent.click(screen.getByRole("button", { name: "Інтервал 2" }));
+  expect(useStore.getState().settings.spacingLevel).toBe(2);
+});
+
+test("switching to high contrast updates store", async () => {
+  render(<MemoryRouter><SettingsScreen /></MemoryRouter>);
+  await userEvent.click(screen.getByRole("button", { name: "Високий контраст" }));
+  expect(useStore.getState().settings.contrastMode).toBe("high");
+});
