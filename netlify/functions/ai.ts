@@ -4,7 +4,10 @@ export const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method Not Allowed" };
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return { statusCode: 500, body: "ANTHROPIC_API_KEY is not configured" };
-  const { question, sources, ctx } = JSON.parse(event.body ?? "{}");
+  let parsed: { question?: string; sources?: Array<{ title: string; body: string }>; ctx?: { status?: string } };
+  try { parsed = JSON.parse(event.body ?? "{}"); }
+  catch { return { statusCode: 400, body: "Invalid JSON" }; }
+  const { question, sources, ctx } = parsed;
   const corpus = (sources ?? []).map((a: { title: string; body: string }) => `### ${a.title}\n${a.body}`).join("\n\n");
   const system = `Ти — помічник Ветеран PRO. Відповідай лаконічно українською мовою, спираючись виключно на наведені статті. Якщо інформації немає — так і скажи. Статус користувача: ${ctx?.status ?? "невідомий"}.`;
   const body = {

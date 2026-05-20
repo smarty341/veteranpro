@@ -17,6 +17,8 @@ export function AiScreen() {
   const [busy, setBusy] = useState(false);
   const { profile } = useStore();
   const askedRef = useRef(false);
+  const mountedRef = useRef(true);
+  useEffect(() => () => { mountedRef.current = false; }, []);
 
   async function send(q: string) {
     if (!q.trim() || busy) return;
@@ -27,10 +29,11 @@ export function AiScreen() {
     let acc = "";
     setMessages(m => [...m, { role: "assistant", text: "", sources }]);
     for await (const t of tokens) {
+      if (!mountedRef.current) return;
       acc += t;
       setMessages(m => { const next = [...m]; next[next.length - 1] = { role: "assistant", text: acc, sources }; return next; });
     }
-    setBusy(false);
+    if (mountedRef.current) setBusy(false);
   }
 
   useEffect(() => { if (initialQ && !askedRef.current) { askedRef.current = true; void send(initialQ); } /* eslint-disable-line */ }, []);
@@ -50,7 +53,7 @@ export function AiScreen() {
       </ScreenContainer>
       <div className="p-3 bg-white border-t border-beige">
         <form className="flex gap-2" onSubmit={e => { e.preventDefault(); void send(input); }}>
-          <input value={input} onChange={e => setInput(e.target.value)} placeholder="Напишіть запитання…" className="flex-1 rounded-card border border-border px-4 py-3 text-sm" />
+          <input aria-label="Запитання до AI-помічника" value={input} onChange={e => setInput(e.target.value)} placeholder="Напишіть запитання…" className="flex-1 rounded-card border border-border px-4 py-3 text-sm" />
           <button aria-label="Надіслати" type="submit" disabled={busy} className="rounded-card bg-brand text-white px-4 disabled:opacity-50">›</button>
         </form>
       </div>

@@ -1,9 +1,14 @@
 import type { Article, Status } from "@/content/types";
 
-const STOP = new Set(["я","ви","на","в","і","та","для","з","до","що","як","це"]);
+const STOP = new Set([
+  "я","ви","ми","він","вона","воно","вони","їх","їм","його","її",
+  "на","в","у","і","й","та","для","з","із","до","що","як","це","той",
+  "але","або","при","від","про","між","під","над","без","ще","вже",
+  "ні","не","так","якщо","коли","де","чи","там","тут"
+]);
 
 function tokenize(s: string): string[] {
-  return s.toLowerCase().normalize("NFC").split(/[^\p{L}\p{N}]+/u).filter(t => t.length > 1 && !STOP.has(t));
+  return s.toLowerCase().normalize("NFC").split(/[^\p{L}\p{N}]+/u).filter(t => t.length > 2 && !STOP.has(t));
 }
 
 /** Returns true if query token matches article token (exact or prefix stem match) */
