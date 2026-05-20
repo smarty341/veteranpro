@@ -10,4 +10,7 @@
   src: url("/assets/fonts/e-Ukraine-Medium.otf") format("opentype"); font-display: swap; }
 
 html, body, #root { height: 100%; }
+/* Bump base font-size from the browser default 16px so every rem-based size scales up.
+   Per-screen Tailwind utilities (text-sm, text-xl, etc.) all inherit from this. */
+html { font-size: 17px; }
 body { font-family: "e-Ukraine", ui-sans-serif, system-ui, sans-serif; color: var(--vp-brand); background: var(--vp-beige-2); -webkit-font-smoothing: antialiased; }

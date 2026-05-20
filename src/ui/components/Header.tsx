@@ -7,7 +7,7 @@ export function Header({ title, onBack, onGear }: Props) {
       <div className="flex items-center gap-3">
         {onBack && <button aria-label="Назад" onClick={onBack} className="text-2xl leading-none">‹</button>}
         {title ? <h1 className="text-xl font-semibold">{title}</h1>
-               : <img src={asset("assets/logo/veteran_logo.svg")} alt="Ветеран PRO" className="h-[34px]" />}
+               : <img src={asset("assets/logo/veteran_logo.svg")} alt="Ветеран PRO" className="h-[48px]" />}
       </div>
       {onGear && <button aria-label="Налаштування" onClick={onGear} className="text-muted">⚙</button>}
     </header>

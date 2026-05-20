@@ -1,14 +1,15 @@
 :root {
   --vp-brand: #2D2926;
   --vp-beige: #E9E4E3;
-  --vp-beige-2: #F4F0EE;
+  --vp-beige-2: #EFE9E5;          /* slightly more saturated so cards visibly stand out */
   --vp-border: #D1CBCB;
   --vp-mut: #6B6664;
   --vp-olive: #757341;
   --vp-olive-soft: #B0AB75;
-  --vp-radius: 12px;
-  --vp-elevation: 0 1px 3px rgba(0,0,0,.06);
+  --vp-radius: 16px;              /* clearly rounded cards/buttons */
+  --vp-elevation: 0 4px 12px rgba(0,0,0,.08);   /* visibly lifted surface */
   --vp-elevation-lg: 0 14px 38px rgba(0,0,0,.14);
+  --vp-button-shadow: 0 4px 14px rgba(45,41,38,0.22);  /* primary-CTA brand-tinted lift */
 }
 
 .contrast-high { --vp-brand: #000000; --vp-mut: #1a1b1f; --vp-border: #6B6664; }

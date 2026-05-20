@@ -11,13 +11,13 @@ const items = [
 
 export function BottomNav() {
   return (
-    <nav className="bg-white border-t border-beige h-[74px] pb-[env(safe-area-inset-bottom)] flex">
+    <nav className="bg-white border-t border-beige h-[84px] pt-3 pb-[env(safe-area-inset-bottom)] flex">
       {items.map(it => (
         <NavLink
           key={it.to}
           to={it.to}
           className={({ isActive }) =>
-            `flex-1 relative flex flex-col items-center justify-center gap-1 text-[11px] ${
+            `flex-1 relative flex flex-col items-center justify-center gap-1 text-[12px] ${
               isActive ? "text-brand font-semibold" : "text-[#a39e9b] font-medium"
             }`
           }
