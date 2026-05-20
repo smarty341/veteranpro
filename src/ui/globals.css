@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@config "../../tailwind.config.ts";
 @import "./tokens.css";
+@config "../../tailwind.config.ts";
 
 @font-face { font-family: "e-Ukraine"; font-weight: 300;
   src: url("/assets/fonts/e-Ukraine-Light.otf") format("opentype"); font-display: swap; }
