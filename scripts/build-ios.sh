@@ -3,13 +3,14 @@
 #
 # What this does:
 #   1. Builds the React app (Vite → dist/)
-#   2. Copies dist/ into the iOS Capacitor project
-#   3. Runs pod install for native dependencies
-#   4. Opens Xcode at the workspace, ready to ⌘+R
+#   2. Syncs dist/ + native deps into the iOS Capacitor project
+#   3. Opens Xcode at the project, ready to ⌘+R
+#
+# Capacitor 8 uses Swift Package Manager — NO CocoaPods, no `pod install`,
+# no .xcworkspace. Xcode resolves Swift packages itself on first open.
 #
 # First-time setup (one-off, before running this script):
 #   xcode-select --install                          # Xcode CLI tools
-#   sudo gem install cocoapods                      # if `pod` not found
 #   npm install                                     # JS deps
 #   npx cap add ios                                 # creates ios/ folder (one-time)
 #   ./scripts/build-ios.sh                          # this script
@@ -25,15 +26,12 @@ npm ci
 echo "→ npm run build (Vite → dist/)"
 npm run build
 
-echo "→ npx cap copy ios"
-npx cap copy ios
-
-echo "→ pod install"
-( cd ios/App && pod install )
+echo "→ npx cap sync ios"
+npx cap sync ios
 
 echo
 echo "✅ Ready. Opening Xcode…"
-open ios/App/App.xcworkspace
+open ios/App/App.xcodeproj
 echo
 echo "In Xcode:"
 echo "  1. Top-left device picker → pick a Simulator or your connected iPhone"

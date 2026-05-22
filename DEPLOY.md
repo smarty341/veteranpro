@@ -126,22 +126,25 @@ This wraps the existing React app in a native iOS (and optionally Android) shell
 
 You need a Mac for the build step. Borrow / rent / use a colleague's — anything from a 2017 Mac mini upward works.
 
+> **Capacitor 8 uses Swift Package Manager — there is NO CocoaPods.** Ignore any
+> older guidance about `pod install`, `gem install cocoapods`, or `.xcworkspace`.
+> Xcode resolves the Swift packages itself the first time you open the project.
+
 ```bash
 # 1. Install Xcode (App Store) and the CLI tools
 xcode-select --install
 
-# 2. Install CocoaPods (native dep manager iOS uses)
-#    Use Homebrew — NOT `sudo gem install cocoapods`. The macOS system Ruby is old
-#    and locked down; `gem install` frequently hangs for 5-10 min compiling native
-#    extensions or fails on permissions. Homebrew installs a self-contained copy.
-brew install cocoapods         # if no Homebrew: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-pod --version                  # confirm: any 1.12+ is fine
+# 2. Install Node.js (provides node + npm + npx). Use Homebrew.
+brew install node              # if no Homebrew: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+node --version                 # confirm it prints a version
 
 # 3. Clone your repo on the Mac
 git clone git@github.com:smarty341/veteranpro.git
 cd veteranpro
 
-# 4. Install JS dependencies
+# 4. Install JS dependencies — REQUIRED before any `npx cap` command.
+#    Without this, `npx cap` downloads an unrelated registry package named `cap`
+#    and fails with "could not determine executable to run".
 npm install
 
 # 5. Create the iOS Capacitor project (one-time; commits the ios/ folder)
@@ -160,7 +163,7 @@ git pull
 ./scripts/build-ios.sh
 ```
 
-The script runs the Vite build, copies output into the iOS project, runs `pod install`, and opens Xcode at the workspace. In Xcode:
+The script runs the Vite build, syncs output + native deps into the iOS project (`npx cap sync`), and opens Xcode at `App.xcodeproj`. In Xcode:
 
 1. **Top-left device picker** → pick a Simulator (free) or your connected iPhone.
 2. **⌘+R** to build and run.
@@ -195,12 +198,12 @@ This installs an iOS app that hot-reloads as you save files on Linux. ⌘+S in y
 
 ### Updating native plugin code
 
-After installing or upgrading a `@capacitor/*` plugin (any change to `package.json`), run `./scripts/build-ios.sh` — it includes `pod install` which picks up the new pod.
+After installing or upgrading a `@capacitor/*` plugin (any change to `package.json`), run `./scripts/build-ios.sh` — its `npx cap sync` step updates the Swift Package Manager dependencies.
 
-If you only changed React/CSS code, you can skip `pod install`:
+If you only changed React/CSS code, you can do a faster copy-only refresh:
 
 ```bash
-npm run build && npx cap copy ios && open ios/App/App.xcworkspace
+npm run build && npx cap copy ios && open ios/App/App.xcodeproj
 ```
 
 ## 5-minute demo walkthrough
