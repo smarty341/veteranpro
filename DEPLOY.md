@@ -131,7 +131,11 @@ You need a Mac for the build step. Borrow / rent / use a colleague's — anythin
 xcode-select --install
 
 # 2. Install CocoaPods (native dep manager iOS uses)
-sudo gem install cocoapods
+#    Use Homebrew — NOT `sudo gem install cocoapods`. The macOS system Ruby is old
+#    and locked down; `gem install` frequently hangs for 5-10 min compiling native
+#    extensions or fails on permissions. Homebrew installs a self-contained copy.
+brew install cocoapods         # if no Homebrew: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+pod --version                  # confirm: any 1.12+ is fine
 
 # 3. Clone your repo on the Mac
 git clone git@github.com:smarty341/veteranpro.git

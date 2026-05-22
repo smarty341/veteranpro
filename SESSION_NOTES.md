@@ -2,7 +2,29 @@
 
 Working continuation document. Read this first when picking up the project in a fresh session.
 
-**Last updated:** 2026-05-20 · main @ post-Capacitor commit (see `git log`)
+**Last updated:** 2026-05-22 · main @ `d8f8116`
+
+---
+
+## ⏯ RESUME HERE — where we left off (2026-05-22)
+
+**Current task:** wrapping the app in Capacitor for a native iOS shell, sideloaded from a borrowed Mac.
+
+**Status:** Capacitor is fully installed and configured *in the repo* (commit `d8f8116`). The native `ios/` folder has **not** been generated yet — that requires a one-time `npx cap add ios` run on a Mac.
+
+**The user is mid-setup on a borrowed Mac.** They were running the first-time prerequisites and got stuck on `sudo gem install cocoapods` (it hangs — macOS system Ruby is old; `gem install` compiles native extensions silently for 5–10 min or fails on permissions).
+
+**Resolution given (not yet confirmed working):** install CocoaPods via Homebrew instead — `brew install cocoapods`, then `pod --version` to confirm. `DEPLOY.md` Option D has been corrected to recommend Homebrew. If `brew` itself is missing, install Homebrew first, then `brew install cocoapods`. Last-resort fallback: `brew install ruby` then `gem install cocoapods` (no sudo) using the Homebrew Ruby.
+
+**Next concrete steps for the user (on the Mac), in order:**
+1. Get `pod --version` to print a version (1.12+).
+2. `git clone git@github.com:smarty341/veteranpro.git && cd veteranpro && npm install`
+3. `npx cap add ios` — generates the `ios/` Xcode project; first run downloads the CocoaPods spec repo (~hundreds of MB, genuinely slow ~several min, looks idle — let it run).
+4. `git add ios && git commit -m "chore: add iOS Capacitor platform" && git push` — so the `ios/` folder is committed and future builds skip the add step.
+5. `./scripts/build-ios.sh` → opens Xcode → device picker → ⌘+R.
+6. First run only: Xcode → App project → Signing & Capabilities → set Team to their Apple ID.
+
+**What the next AI session should do:** ask the user whether the Mac setup succeeded. If yes and `ios/` is now committed, the native path is live — help with signing/TestFlight as needed. If they hit new errors, debug from `DEPLOY.md` Option D. If they abandoned the Mac route, the PWA at the live URL is fully functional and demo-ready as-is.
 
 ---
 
