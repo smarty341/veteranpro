@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "Ветеран PRO",
+    "slug": "veteranpro-native",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "veteranpro",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#EFE9E5"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "ua.gov.veteranpro.native"
+    },
+    "android": {
+      "package": "ua.gov.veteranpro.native",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#EFE9E5"
+      }
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
