@@ -1,7 +1,7 @@
-import { View, Text, Pressable, StyleSheet, Alert } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { View, Text, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Logo } from "./Logo";
+import { GearButton } from "./GearButton";
 import { colors, fontSize, weight } from "../lib/theme";
 
 interface Props {
@@ -15,14 +15,7 @@ export function Header({ title, showGear = true }: Props) {
     <View style={[styles.bar, { paddingTop: insets.top + 12 }]}>
       <View style={styles.brandRow}>
         <Logo height={34} />
-        {showGear && (
-          <Pressable
-            onPress={() => Alert.alert("Налаштування", "Цей екран — у повній версії.")}
-            hitSlop={8}
-          >
-            <MaterialCommunityIcons name="cog-outline" size={24} color={colors.brand} />
-          </Pressable>
-        )}
+        {showGear && <GearButton />}
       </View>
       {title && <Text style={styles.title}>{title}</Text>}
     </View>
