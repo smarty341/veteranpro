@@ -1,6 +1,7 @@
 import { View, Text, Pressable, FlatList, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
+import Animated from "react-native-reanimated";
 import { IconTile } from "../../../components/IconTile";
 import { categories } from "../../../content/categories";
 import { colors, fontSize, weight, radius, elevation } from "../../../lib/theme";
@@ -22,7 +23,9 @@ export default function CatalogScreen() {
             style={({ pressed }) => [styles.tile, pressed && styles.tilePressed]}
             onPress={() => router.push(`/(tabs)/catalog/${item.id}` as any)}
           >
-            <IconTile icon={item.icon} size={38} />
+            <Animated.View {...({ sharedTransitionTag: "category-icon-" + item.id } as any)}>
+              <IconTile icon={item.icon} size={38} />
+            </Animated.View>
             <Text style={styles.label}>{item.nameUa}</Text>
           </Pressable>
         )}

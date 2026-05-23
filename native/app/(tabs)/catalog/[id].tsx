@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Stack, useLocalSearchParams } from "expo-router";
+import Animated from "react-native-reanimated";
 import { IconTile } from "../../../components/IconTile";
 import { categories } from "../../../content/categories";
 import { colors, fontSize } from "../../../lib/theme";
@@ -26,9 +27,9 @@ export default function CategoryScreen() {
     >
       <StatusBar style="dark" />
       <Stack.Screen options={{ title: category.nameUa }} />
-      <View style={styles.hero}>
+      <Animated.View {...({ sharedTransitionTag: "category-icon-" + category.id } as any)} style={styles.hero}>
         <IconTile icon={category.icon} size={96} />
-      </View>
+      </Animated.View>
       <Text style={styles.body}>Список послуг цієї категорії — у повній версії.</Text>
     </ScrollView>
   );
