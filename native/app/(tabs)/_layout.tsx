@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, weight } from "../../lib/theme";
 import { mci } from "../../lib/icons";
+import { tapSelection } from "../../lib/haptics";
 
 interface TabIcon {
   inactive: string;   // ri:* name (line variant)
@@ -37,8 +38,12 @@ export default function TabsLayout() {
   const insets = useSafeAreaInsets();
   return (
     <Tabs
+      screenListeners={{
+        tabPress: () => tapSelection(),
+      }}
       screenOptions={({ route }) => ({
         headerShown: false,
+        animation: "shift",
         tabBarShowLabel: true,
         tabBarActiveTintColor: colors.brand,
         tabBarInactiveTintColor: colors.inactive,
