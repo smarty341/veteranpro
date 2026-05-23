@@ -1,11 +1,28 @@
 import { Pressable, Alert, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import { useStore } from "../lib/store";
 import { colors } from "../lib/theme";
 
 export function GearButton({ size = 24 }: { size?: number }) {
+  const router = useRouter();
+  const resetDemo = useStore((s) => s.resetDemo);
+
   return (
     <Pressable
-      onPress={() => Alert.alert("Налаштування", "Цей екран — у повній версії.")}
+      onPress={() =>
+        Alert.alert("Налаштування", "Цей екран — у повній версії.", [
+          {
+            text: "Скинути демо",
+            style: "destructive",
+            onPress: () => {
+              resetDemo();
+              router.replace("/");
+            },
+          },
+          { text: "Закрити", style: "cancel" },
+        ])
+      }
       hitSlop={8}
       style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
       accessibilityLabel="Налаштування"
