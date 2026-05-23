@@ -22,7 +22,7 @@ export default function LoginScreen() {
     <SafeAreaView style={styles.safe}>
       <StatusBar style="dark" />
       <View style={styles.center}>
-        <Logo height={72} />
+        <Logo height={40} />
         <Text style={styles.tagline}>Державні послуги для ветеранів та ветеранок</Text>
         <View style={styles.actions}>
           <Button onPress={continueWithDiia}>Увійти через Дія</Button>

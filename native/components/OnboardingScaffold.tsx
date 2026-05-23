@@ -83,7 +83,7 @@ export function OnboardingScaffold({ step, title, subtitle, onSkip, children }: 
               style={({ pressed }) => [pressed && { opacity: 0.6 }]}
               accessibilityRole="button"
             >
-              <Text style={styles.skip}>Пропустити</Text>
+              <Text style={styles.skip} numberOfLines={1}>Пропустити</Text>
             </Pressable>
           )}
         </View>
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  side: { width: 60, alignItems: "flex-start" },
+  side: { width: 96, alignItems: "flex-start" },
   sideRight: { alignItems: "flex-end" },
   dots: { flexDirection: "row", alignItems: "center", gap: 10 },
   dot: { width: 8, height: 8, borderRadius: 4 },
