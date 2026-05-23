@@ -16,8 +16,12 @@ const SIZES = [
 export default function InterestsScreen() {
   const router = useRouter();
   const setProfile = useStore((s) => s.setProfile);
-  const existing = useStore((s) => s.profile.interests ?? []);
-  const [selected, setSelected] = useState<string[]>(existing);
+  // Read once via getState — avoids a Zustand selector that returns a fresh `[]`
+  // when `interests` is undefined (would cause "getSnapshot should be cached"
+  // infinite-loop errors via React 19's stricter snapshot checks).
+  const [selected, setSelected] = useState<string[]>(
+    () => useStore.getState().profile.interests ?? []
+  );
 
   const toggle = (id: string) =>
     setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
