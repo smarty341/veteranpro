@@ -1,10 +1,15 @@
 import { useState, useMemo } from "react";
-import { View, Text, Pressable, TextInput, FlatList, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text, Pressable, TextInput, FlatList, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { FadeUp } from "../../components/FadeUp";
+import { OnboardingScaffold } from "../../components/OnboardingScaffold";
 import { regions } from "../../content/regions";
 import { useStore } from "../../lib/store";
-import { colors, fontSize, weight, radius } from "../../lib/theme";
+import { tapSelection } from "../../lib/haptics";
+import { colors, fontSize, radius } from "../../lib/theme";
+
+const INITIAL_STAGGER_LIMIT = 8;
 
 export default function RegionScreen() {
   const router = useRouter();
@@ -17,16 +22,24 @@ export default function RegionScreen() {
   );
 
   const pick = (r: string) => {
+    tapSelection();
     setProfile({ region: r });
     router.push("/onboarding/interests");
   };
 
-  return (
-    <SafeAreaView style={styles.safe}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Ваш регіон</Text>
-        <Text style={styles.subtitle}>Допоможе показати регіональні програми та послуги.</Text>
+  const skip = () => {
+    setProfile({});
+    router.push("/onboarding/interests");
+  };
 
+  return (
+    <OnboardingScaffold
+      step={2}
+      title="Ваш регіон"
+      subtitle="Допоможе показати регіональні програми та послуги."
+      onSkip={skip}
+    >
+      <FadeUp delay={120}>
         <TextInput
           value={q}
           onChangeText={setQ}
@@ -34,36 +47,33 @@ export default function RegionScreen() {
           placeholderTextColor={colors.muted}
           style={styles.input}
         />
+      </FadeUp>
 
-        <FlatList
-          data={filtered}
-          keyExtractor={(r) => r}
-          contentContainerStyle={{ gap: 8, paddingBottom: 24 }}
-          renderItem={({ item }) => (
-            <Pressable style={styles.row} onPress={() => pick(item)}>
-              <Text style={styles.rowLabel}>{item}</Text>
-            </Pressable>
-          )}
-        />
-
-        <Pressable
-          onPress={() => {
-            setProfile({});
-            router.push("/onboarding/interests");
-          }}
-        >
-          <Text style={styles.skip}>Пропустити</Text>
-        </Pressable>
-      </View>
-    </SafeAreaView>
+      <FlatList
+        data={filtered}
+        keyExtractor={(r) => r}
+        contentContainerStyle={styles.listContent}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item, index }) => {
+          const animate = index < INITIAL_STAGGER_LIMIT && q === "";
+          return (
+            <FadeUp delay={animate ? 160 + Math.min(index, 5) * 40 : 0} enabled={animate}>
+              <Pressable
+                onPress={() => pick(item)}
+                style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
+              >
+                <Text style={styles.rowLabel}>{item}</Text>
+                <MaterialCommunityIcons name="chevron-right" size={22} color={colors.muted} />
+              </Pressable>
+            </FadeUp>
+          );
+        }}
+      />
+    </OnboardingScaffold>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.beigeSoft },
-  content: { flex: 1, padding: 20, paddingTop: 32 },
-  title: { fontSize: fontSize["2xl"], fontWeight: weight.semibold, color: colors.brand, marginBottom: 4 },
-  subtitle: { fontSize: fontSize.sm, color: colors.muted, marginBottom: 12 },
   input: {
     backgroundColor: colors.white,
     borderColor: colors.border,
@@ -71,10 +81,12 @@ const styles = StyleSheet.create({
     borderRadius: radius.card,
     paddingHorizontal: 16,
     paddingVertical: 12,
+    minHeight: 44,
     fontSize: fontSize.sm,
     color: colors.brand,
     marginBottom: 12,
   },
+  listContent: { gap: 8, paddingBottom: 24 },
   row: {
     backgroundColor: colors.white,
     borderColor: colors.beige,
@@ -82,7 +94,10 @@ const styles = StyleSheet.create({
     borderRadius: radius.card,
     paddingHorizontal: 16,
     paddingVertical: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
-  rowLabel: { fontSize: fontSize.base, color: colors.brand },
-  skip: { color: colors.muted, fontSize: fontSize.sm, textDecorationLine: "underline", marginTop: 12, alignSelf: "flex-start" },
+  rowPressed: { opacity: 0.7, transform: [{ scale: 0.98 }] },
+  rowLabel: { fontSize: fontSize.base, color: colors.brand, flex: 1 },
 });
