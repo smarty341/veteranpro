@@ -1,4 +1,5 @@
 import { Text, Pressable, ScrollView, StyleSheet } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
 import { Card } from "../../components/Card";
 import { FadeUp } from "../../components/FadeUp";
@@ -18,6 +19,7 @@ export default function StatusScreen() {
       title="Оберіть свій статус"
       subtitle="Послуги та програми різняться залежно від статусу."
     >
+      <StatusBar style="dark" />
       <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
         {statuses.map((s, i) => (
           <FadeUp key={s.id} delay={80 + Math.min(i, 5) * 40}>

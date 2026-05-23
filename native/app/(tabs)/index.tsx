@@ -1,4 +1,5 @@
 import { View, Text, Pressable, Image, StyleSheet, Alert } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Header } from "../../components/Header";
 import { ScreenContainer } from "../../components/ScreenContainer";
@@ -20,6 +21,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.root}>
+      <StatusBar style="dark" />
       <Header />
       <ScreenContainer>
         <Text style={styles.greeting}>Доброго дня 👋</Text>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
 import { Button } from "../../components/Button";
 import { FadeUp } from "../../components/FadeUp";
@@ -44,6 +45,7 @@ export default function InterestsScreen() {
       subtitle="Можна обрати декілька. Це допоможе підібрати релевантні послуги."
       onSkip={skip}
     >
+      <StatusBar style="dark" />
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.cloud}>
           {interests.map((it, i) => {

@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Text, Pressable, TextInput, FlatList, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
 import { FadeUp } from "../../components/FadeUp";
 import { OnboardingScaffold } from "../../components/OnboardingScaffold";
@@ -39,6 +40,7 @@ export default function RegionScreen() {
       subtitle="Допоможе показати регіональні програми та послуги."
       onSkip={skip}
     >
+      <StatusBar style="dark" />
       <FadeUp delay={120}>
         <TextInput
           value={q}

@@ -1,5 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
 import { Logo } from "../../components/Logo";
 import { Button } from "../../components/Button";
@@ -19,6 +20,7 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
+      <StatusBar style="dark" />
       <View style={styles.center}>
         <Logo height={72} />
         <Text style={styles.tagline}>Державні послуги для ветеранів та ветеранок</Text>
