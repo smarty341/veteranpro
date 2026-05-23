@@ -1,10 +1,12 @@
-import { View, Text, Pressable, FlatList, StyleSheet, Alert } from "react-native";
+import { View, Text, Pressable, FlatList, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { useRouter } from "expo-router";
 import { IconTile } from "../../../components/IconTile";
 import { categories } from "../../../content/categories";
 import { colors, fontSize, weight, radius, elevation } from "../../../lib/theme";
 
 export default function CatalogScreen() {
+  const router = useRouter();
   return (
     <View style={styles.root}>
       <StatusBar style="dark" />
@@ -18,7 +20,7 @@ export default function CatalogScreen() {
         renderItem={({ item }) => (
           <Pressable
             style={({ pressed }) => [styles.tile, pressed && styles.tilePressed]}
-            onPress={() => Alert.alert(item.nameUa, "Список послуг цієї категорії — у повній версії.")}
+            onPress={() => router.push(`/(tabs)/catalog/${item.id}` as any)}
           >
             <IconTile icon={item.icon} size={38} />
             <Text style={styles.label}>{item.nameUa}</Text>

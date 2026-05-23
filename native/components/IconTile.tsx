@@ -3,10 +3,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors, radius } from "../lib/theme";
 import { mci } from "../lib/icons";
 
-export function IconTile({ icon, size = 42 }: { icon: string; size?: 38 | 42 }) {
+export function IconTile({ icon, size = 42 }: { icon: string; size?: number }) {
+  const inner = Math.round(size * 0.52);
   return (
-    <View style={[styles.tile, { width: size, height: size }]}>
-      <MaterialCommunityIcons name={mci(icon)} size={22} color={colors.brand} />
+    <View style={[styles.tile, { width: size, height: size, borderRadius: size >= 64 ? 16 : radius.iconTile }]}>
+      <MaterialCommunityIcons name={mci(icon)} size={inner} color={colors.brand} />
     </View>
   );
 }
@@ -14,7 +15,6 @@ export function IconTile({ icon, size = 42 }: { icon: string; size?: 38 | 42 }) 
 const styles = StyleSheet.create({
   tile: {
     backgroundColor: colors.beige,
-    borderRadius: radius.iconTile,
     alignItems: "center",
     justifyContent: "center",
   },
