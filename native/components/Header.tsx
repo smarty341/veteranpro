@@ -1,5 +1,7 @@
 import { View, Text, Pressable, StyleSheet, Alert } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Logo } from "./Logo";
 import { colors, fontSize, weight } from "../lib/theme";
 
 interface Props {
@@ -8,17 +10,21 @@ interface Props {
 }
 
 export function Header({ title, showGear = true }: Props) {
+  const insets = useSafeAreaInsets();
   return (
-    <View style={styles.bar}>
-      <Text style={styles.title}>{title ?? ""}</Text>
-      {showGear && (
-        <Pressable
-          onPress={() => Alert.alert("Налаштування", "Цей екран — у повній версії.")}
-          hitSlop={8}
-        >
-          <MaterialCommunityIcons name="cog-outline" size={22} color={colors.brand} />
-        </Pressable>
-      )}
+    <View style={[styles.bar, { paddingTop: insets.top + 12 }]}>
+      <View style={styles.brandRow}>
+        <Logo height={34} />
+        {showGear && (
+          <Pressable
+            onPress={() => Alert.alert("Налаштування", "Цей екран — у повній версії.")}
+            hitSlop={8}
+          >
+            <MaterialCommunityIcons name="cog-outline" size={24} color={colors.brand} />
+          </Pressable>
+        )}
+      </View>
+      {title && <Text style={styles.title}>{title}</Text>}
     </View>
   );
 }
@@ -26,16 +32,18 @@ export function Header({ title, showGear = true }: Props) {
 const styles = StyleSheet.create({
   bar: {
     paddingHorizontal: 20,
-    paddingTop: 8,
     paddingBottom: 12,
+    backgroundColor: colors.beigeSoft,
+  },
+  brandRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: colors.beigeSoft,
   },
   title: {
-    fontSize: fontSize.lg,
+    fontSize: fontSize["2xl"],
     fontWeight: weight.semibold,
     color: colors.brand,
+    marginTop: 14,
   },
 });

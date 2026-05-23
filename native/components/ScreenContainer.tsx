@@ -4,7 +4,7 @@ import { colors } from "../lib/theme";
 
 export function ScreenContainer({ children, style, ...rest }: ScrollViewProps) {
   return (
-    <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
+    <SafeAreaView style={styles.safe} edges={["bottom"]}>
       <ScrollView
         {...rest}
         style={styles.scroll}

@@ -1,7 +1,8 @@
 import { Tabs } from "expo-router";
 import { View, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { colors, fontSize, weight } from "../../lib/theme";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { colors, weight } from "../../lib/theme";
 import { mci } from "../../lib/icons";
 
 interface TabIcon {
@@ -33,6 +34,7 @@ function renderTabIcon(routeName: string, focused: boolean) {
 }
 
 export default function TabsLayout() {
+  const insets = useSafeAreaInsets();
   return (
     <Tabs
       screenOptions={({ route }) => ({
@@ -40,7 +42,14 @@ export default function TabsLayout() {
         tabBarShowLabel: true,
         tabBarActiveTintColor: colors.brand,
         tabBarInactiveTintColor: colors.inactive,
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: [
+          styles.tabBar,
+          {
+            height: 60 + insets.bottom,
+            paddingBottom: insets.bottom + 6,
+          },
+        ],
+        tabBarItemStyle: styles.tabItem,
         tabBarLabelStyle: styles.tabLabel,
         tabBarIcon: ({ focused }) => renderTabIcon(route.name, focused),
       })}
@@ -58,13 +67,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderTopColor: colors.beige,
     borderTopWidth: 1,
-    height: 64,
-    paddingTop: 4,
-    paddingBottom: 4,
+    paddingTop: 6,
+    overflow: "visible",
+  },
+  tabItem: {
+    paddingVertical: 2,
+    overflow: "visible",
   },
   tabLabel: {
-    fontSize: fontSize.xs,
+    fontSize: 13,
     fontWeight: weight.medium,
+    marginTop: 2,
   },
   iconWrap: {
     alignItems: "center",
@@ -72,7 +85,7 @@ const styles = StyleSheet.create({
   },
   activeBar: {
     position: "absolute",
-    top: -8,
+    top: -16,
     height: 3,
     width: 32,
     backgroundColor: colors.olive,
