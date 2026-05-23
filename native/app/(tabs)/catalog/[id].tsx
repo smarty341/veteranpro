@@ -26,7 +26,7 @@ export default function CategoryScreen() {
       contentInsetAdjustmentBehavior="automatic"
     >
       <StatusBar style="dark" />
-      <Stack.Screen options={{ title: category.nameUa }} />
+      <Stack.Screen options={{ title: category.nameUa, headerLargeTitle: false }} />
       <Animated.View {...({ sharedTransitionTag: "category-icon-" + category.id } as any)} style={styles.hero}>
         <IconTile icon={category.icon} size={96} />
       </Animated.View>
