@@ -1,47 +1,49 @@
-import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text, Pressable, ScrollView, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import { Card } from "../../components/Card";
+import { FadeUp } from "../../components/FadeUp";
+import { OnboardingScaffold } from "../../components/OnboardingScaffold";
 import { statuses } from "../../content/statuses";
 import { useStore } from "../../lib/store";
-import { colors, fontSize, weight, space } from "../../lib/theme";
+import { tapSelection } from "../../lib/haptics";
+import { colors, fontSize, weight } from "../../lib/theme";
 
 export default function StatusScreen() {
   const router = useRouter();
   const setProfile = useStore((s) => s.setProfile);
 
   return (
-    <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>Оберіть свій статус</Text>
-        <Text style={styles.subtitle}>Послуги та програми різняться залежно від статусу.</Text>
-
-        <View style={{ gap: space(3) }}>
-          {statuses.map((s) => (
+    <OnboardingScaffold
+      step={1}
+      title="Оберіть свій статус"
+      subtitle="Послуги та програми різняться залежно від статусу."
+    >
+      <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
+        {statuses.map((s, i) => (
+          <FadeUp key={s.id} delay={80 + Math.min(i, 5) * 40}>
             <Pressable
-              key={s.id}
               onPress={() => {
+                tapSelection();
                 setProfile({ status: s.id });
                 router.push("/onboarding/region");
               }}
+              style={({ pressed }) => [pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] }]}
             >
-              <Card>
+              <Card style={styles.card}>
                 <Text style={styles.cardTitle}>{s.short} — {s.full}</Text>
                 <Text style={styles.cardBody}>{s.description}</Text>
               </Card>
             </Pressable>
-          ))}
-        </View>
+          </FadeUp>
+        ))}
       </ScrollView>
-    </SafeAreaView>
+    </OnboardingScaffold>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.beigeSoft },
-  content: { padding: 20, paddingTop: 32, gap: 4 },
-  title: { fontSize: fontSize["2xl"], fontWeight: weight.semibold, color: colors.brand },
-  subtitle: { fontSize: fontSize.sm, color: colors.muted, marginBottom: 16 },
+  list: { gap: 12, paddingBottom: 24 },
+  card: { borderLeftWidth: 3, borderLeftColor: colors.olive },
   cardTitle: { fontSize: fontSize.lg, fontWeight: weight.semibold, color: colors.brand },
   cardBody: { fontSize: fontSize.sm, color: colors.muted, marginTop: 4 },
 });
