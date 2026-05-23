@@ -17,7 +17,7 @@ export function GearButton({ size = 24 }: { size?: number }) {
             style: "destructive",
             onPress: () => {
               resetDemo();
-              router.replace("/");
+              router.replace("/onboarding/login");
             },
           },
           { text: "Закрити", style: "cancel" },
