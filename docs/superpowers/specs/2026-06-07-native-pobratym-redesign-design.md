@@ -250,6 +250,42 @@ Ports `#s-off`: search field (visual only), category chips, offer cards with dis
 
 ---
 
+## 9A. AI-бро chat screen
+
+Replace the current stub (`app/(tabs)/ai/index.tsx`) with a chat UI that imitates the **start of
+a conversation with the bot**, including a **simulated LLM streaming** effect. All mock — no real
+model call.
+
+### Behaviour
+
+- On mount: a brief **typing indicator** (3 animated dots in a bot bubble, ~600–900ms), then the
+  opening message **streams in character-by-character** (typewriter), with a blinking cursor
+  (`▍`) at the tail while streaming. Speed ≈ 18–30ms/char with slight punctuation pauses, so it
+  reads like token streaming, not an instant paste.
+- **Opening message (verbatim intent):**
+  > «Привіт, я — твій цифровий бро. Підкажу по послугам від держави без «згідно-відповідно».»
+- After the opening finishes, show 3 **suggested-prompt chips**, e.g.:
+  «Яка допомога мені належить?» · «Як оформити картку ветерана?» · «Знижки поруч».
+- Tapping a chip (or sending text in the bottom input) appends a **user bubble** (orange,
+  right-aligned), then a bot **typing indicator → streamed canned reply** (bot bubble,
+  `surfaceCard`, left-aligned, with the AI-бро avatar). Replies are a small keyed map of canned
+  answers; an unknown prompt falls back to a generic streamed "поки що я демо, але в повній
+  версії…" reply.
+- Bottom **text input** + send button (orange). Functional for the mock loop above; no network.
+- Respect brand motion (ease-out, no bounce). No `Math.random` — use deterministic timing and a
+  cursor toggle on an interval.
+
+### Implementation notes
+
+- `lib/useTypewriter.ts` (**new**): a hook that takes a target string + speed and exposes the
+  progressively-revealed substring + `isStreaming`. Cancels cleanly on unmount.
+- `components/ChatBubble.tsx` (**new**): bot vs user variants (avatar, alignment, fill).
+- `components/TypingDots.tsx` (**new**): 3-dot animated indicator (Reanimated).
+- `content/aiCanned.ts` (**new**): opening message, suggested prompts, canned reply map.
+- Avatar for the bot reuses `components/Avatar.tsx` (AI-бро mark / sparkling icon, orange ring).
+
+---
+
 ## 10. Мої послуги (services) — absorbs the catalogue
 
 `app/(tabs)/applications/index.tsx` (rebuilt) becomes:
@@ -276,6 +312,10 @@ Ports `#s-off`: search field (visual only), category chips, offer cards with dis
 | `components/MissionCard.tsx` | **new** |
 | `components/OfferCard.tsx` + `components/QrSheet.tsx` | **new** |
 | `components/SpecialistCard.tsx` | **new** |
+| `lib/useTypewriter.ts` | **new** — streaming-text hook for AI-бро |
+| `components/ChatBubble.tsx` + `components/TypingDots.tsx` | **new** — AI-бро chat UI |
+| `content/aiCanned.ts` | **new** — opening message, prompts, canned replies |
+| `app/(tabs)/ai/index.tsx` | rebuilt from stub into the chat screen (section 9A) |
 | Onboarding screens | `stage/health/housing/work` new; `interests` reworked; `profile` (loc+status) new; `building`, `assignment` new |
 
 ---
