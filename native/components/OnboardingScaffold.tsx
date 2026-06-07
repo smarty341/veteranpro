@@ -15,7 +15,8 @@ import { FadeUp } from "./FadeUp";
 import { colors, fontSize, weight } from "../lib/theme";
 
 interface Props {
-  step: 1 | 2 | 3;
+  step: number;
+  total: number;
   title: string;
   subtitle?: string;
   onSkip?: () => void;
@@ -46,7 +47,7 @@ function Dot({ active }: { active: boolean }) {
   return <Animated.View style={[styles.dot, animatedStyle]} />;
 }
 
-export function OnboardingScaffold({ step, title, subtitle, onSkip, children }: Props) {
+export function OnboardingScaffold({ step, total, title, subtitle, onSkip, children }: Props) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
 
@@ -68,8 +69,8 @@ export function OnboardingScaffold({ step, title, subtitle, onSkip, children }: 
         </View>
 
         <View style={styles.dots}>
-          {[1, 2, 3].map((i) => (
-            <Dot key={i} active={i === step} />
+          {Array.from({ length: total }, (_, i) => (
+            <Dot key={i + 1} active={i + 1 === step} />
           ))}
         </View>
 

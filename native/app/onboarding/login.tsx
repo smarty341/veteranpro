@@ -15,7 +15,7 @@ export default function LoginScreen() {
   const continueWithDiia = () => {
     tapMedium();
     markMockLoggedIn();
-    router.push("/onboarding/status");
+    router.push("/onboarding/stage");
   };
 
   return (
@@ -27,7 +27,7 @@ export default function LoginScreen() {
         <View style={styles.actions}>
           <Button onPress={continueWithDiia}>Увійти через Дія</Button>
           <Pressable
-            onPress={() => router.push("/onboarding/status")}
+            onPress={() => router.push("/onboarding/stage")}
             style={({ pressed }) => [pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] }]}
           >
             <Text style={styles.skip}>Продовжити без входу</Text>
@@ -41,7 +41,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.white },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 32, gap: 20 },
-  tagline: { fontSize: fontSize.base, color: colors.muted, textAlign: "center", marginTop: 8 },
+  tagline: { fontSize: fontSize.base, color: colors.textMuted, textAlign: "center", marginTop: 8 },
   actions: { width: "100%", marginTop: 16, gap: 12, alignItems: "center" },
-  skip: { color: colors.muted, fontSize: fontSize.sm, textDecorationLine: "underline" },
+  skip: { color: colors.textMuted, fontSize: fontSize.sm, textDecorationLine: "underline" },
 });
