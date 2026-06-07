@@ -3,6 +3,7 @@ import { colors, weight, fontSize, radius } from "../lib/theme";
 import { Card } from "./Card";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import type { Offer } from "../content/offers";
+import { logoSources } from "../assets/logos";
 
 export interface OfferCardProps {
   offer: Offer;
@@ -12,14 +13,18 @@ export interface OfferCardProps {
 }
 
 export function OfferCard({ offer, logoSource, onShowQr }: OfferCardProps) {
+  // Prefer an explicitly-passed source, else resolve from the bundled require-map by offer.logo key.
+  const resolvedLogo =
+    logoSource ?? (offer.logo != null ? logoSources[offer.logo] : undefined);
+
   return (
     <Card style={styles.card}>
       {/* Row: logo chip · name+meta · discount */}
       <View style={styles.row}>
         {/* Logo chip — white background when logo present, else plain emoji tile */}
-        {logoSource != null ? (
+        {resolvedLogo != null ? (
           <View style={styles.logoChip}>
-            <Image source={logoSource} style={styles.logoImg} resizeMode="contain" />
+            <Image source={resolvedLogo} style={styles.logoImg} resizeMode="contain" />
           </View>
         ) : (
           <View style={styles.emojiTile}>
