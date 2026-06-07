@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   title: {
-    fontSize: 13.5,
+    fontSize: 15,
     fontWeight: weight.semibold,
     color: colors.text,
     lineHeight: 18,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   xp: {
-    fontSize: 11.5,
+    fontSize: 13,
     fontWeight: weight.bold,
     color: colors.accent,
     whiteSpace: "nowrap",

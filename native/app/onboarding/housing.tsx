@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   oem: { fontSize: 23, lineHeight: 28, flexShrink: 0 },
   otxt: { flex: 1, minWidth: 0 },
   olbl: { fontSize: fontSize.sm + 0.5, fontWeight: weight.semibold, color: colors.text, lineHeight: 18 },
-  osub: { fontSize: 11.5, color: colors.textMuted, marginTop: 3, lineHeight: 16 },
+  osub: { fontSize: 13, color: colors.textMuted, marginTop: 3, lineHeight: 18 },
   cbox: {
     width: 22,
     height: 22,

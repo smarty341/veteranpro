@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   },
   botBubbleWrap: { flexShrink: 1 },
 
-  bubbleText: { color: colors.text, fontSize: 15, lineHeight: 21 },
+  bubbleText: { color: colors.text, fontSize: 17, lineHeight: 24 },
   cursor: { color: colors.accent, fontWeight: weight.bold },
 
   chips: {

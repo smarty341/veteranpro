@@ -19,6 +19,6 @@ export function LevelRing({ level, pct, size = 56 }: { level: number; pct: numbe
 }
 const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
-  lvl: { color: colors.accent, fontWeight: weight.bold, fontSize: 15 },
-  cap: { color: colors.textMuted, fontSize: 8 },
+  lvl: { color: colors.accent, fontWeight: weight.bold, fontSize: 17 },
+  cap: { color: colors.textMuted, fontSize: 9 },
 });

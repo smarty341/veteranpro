@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
   },
   textBot: {
     color: colors.text,
-    fontSize: 15,
+    fontSize: 17,
     lineHeight: 21,
   },
   textMe: {
     color: colors.onAccent,
-    fontSize: 15,
+    fontSize: 17,
     lineHeight: 21,
   },
 });
