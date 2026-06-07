@@ -12,6 +12,15 @@
 
 **Reference docs:** spec `docs/superpowers/specs/2026-06-07-native-pobratym-redesign-design.md`; scrape report `docs/superpowers/specs/veteranpro-scrape-report.md`; mockups `docs/mockups/screens/`.
 
+**Native-feel mandate (cross-cutting — applies to every screen task):** the app must feel as
+native as possible on iPhone (target **iPhone 17 Pro Max**, ProMotion 120 Hz, Dynamic Island).
+This overrides the brand's "minimal motion" where they conflict. For each screen: add smooth
+expo-router transitions, Reanimated UI-thread animations (press scale 0.97–0.98, level-ring/progress
+animating to value, avatar spring on assignment, mission-complete micro-animation), and `expo-haptics`
+feedback (selection tick on taps/tabs, success notification on mission-complete / step-done /
+specialist-assigned, light impact on primary buttons). Respect `useSafeAreaInsets()`. Keep effects
+150–280 ms and purposeful. See spec §3 "Native feel (iOS-first)".
+
 ---
 
 ## File Structure (what gets created / changed)
@@ -285,14 +294,14 @@ export const aiOpening =
   "Привіт, я — твій цифровий бро. Підкажу по послугам від держави без «згідно-відповідно».";
 export const aiPrompts = [
   "Яка допомога мені належить?",
-  "Як оформити картку ветерана?",
+  "Що таке Ветеран-бокс?",
   "Знижки поруч",
 ];
 export const aiReplies: Record<string, string> = {
   "Яка допомога мені належить?":
     "Залежить від статусу. Для УБД це передусім грошова допомога, пільги на комуналку та проїзд, безоплатне лікування й «Ветеранський спорт». Відкрий «Мої послуги» — там усе по поличках.",
-  "Як оформити картку ветерана?":
-    "Три кроки: перевір статус УБД у Дії, подай заявку онлайн у банку-партнері (треба паспорт і посвідчення), активуй картку в застосунку банку. Це окрема місія на головній.",
+  "Що таке Ветеран-бокс?":
+    "Ветеран-бокс — це вітальний набір для ветерана: корисний мерч, дрібниці та промокоди партнерів. Замовляєш у застосунку, забираєш у ветеранському просторі або отримуєш доставкою. Це окрема місія на головній.",
   "Знижки поруч":
     "Загляни у «Можливості» — там WOG (−5 ₴/л), Riot Division (−50%) та Mindly (5 год терапії безкоштовно). Показуєш QR на касі — і все.",
 };
@@ -317,7 +326,7 @@ export const basePath: PathStep[] = [
   { id: "ogd",          etap: ETAPY[0], title: "Одноразова грошова допомога (ОГД)", note: "50% / 25% за кожен рік служби", done: true },
   { id: "tck",          etap: ETAPY[1], title: "Військовий облік у ТЦК",     note: "Статус оновлюється в «Резерв+»", done: true },
   { id: "support",      etap: ETAPY[1], title: "Фахівець із супроводу",      note: "Ветеранський простір або Ветеран PRO у Дії", done: true },
-  { id: "vet-card",     etap: ETAPY[1], title: "Картка ветерана",            note: "Активна місія · 2 кроки лишилось", xp: 150 },
+  { id: "vet-box",      etap: ETAPY[1], title: "Ветеран-бокс",               note: "Вітальний набір ветерана · активна місія", xp: 150 },
   { id: "indep-help",   etap: ETAPY[2], title: "Щорічна допомога до Дня Незалежності", note: "Через ПФУ онлайн", done: true },
   { id: "utility-75",   etap: ETAPY[2], title: "Знижка 75% на комуналку",   note: "Монетизована — ПФУ компенсує на картку", xp: 150 },
   { id: "transport",    etap: ETAPY[2], title: "Пільговий проїзд",          note: "Міський транспорт і приміські поїзди — 0 грн", xp: 50 },
@@ -413,10 +422,10 @@ describe("store", () => {
 
   it("completeMission adds xp and records the id once", () => {
     useStore.getState().setProfile({ stage: "out" });
-    useStore.getState().completeMission("vet-card", 150);
-    useStore.getState().completeMission("vet-card", 150); // idempotent
+    useStore.getState().completeMission("vet-box", 150);
+    useStore.getState().completeMission("vet-box", 150); // idempotent
     const p = useStore.getState().profile;
-    expect(p.completedMissionIds).toEqual(["vet-card"]);
+    expect(p.completedMissionIds).toEqual(["vet-box"]);
     expect(p.xp).toBe(150);
   });
 
@@ -948,7 +957,7 @@ export const logoSources: Record<string, any> = {
 **Files:** Rewrite `app/(tabs)/applications/index.tsx`; create `app/(tabs)/applications/[category].tsx`; `app/(tabs)/applications/_layout.tsx` (Stack)
 
 - [ ] **Step 1:** `_layout.tsx` — Stack (headerShown false) so `index` + `[category]` nest.
-- [ ] **Step 2:** `index.tsx` from `docs/mockups/screens/services.html`: title + sub; **«В роботі»** section (2 mock in-progress rows — e.g. "Оформлення картки ветерана" крок 2 з 3 with `ProgressBar`); **«Категорії»** 2-col grid over `categories` (rounded `Card`, `IconTile` line icon + name), tap → `router.push("/(tabs)/applications/" + cat.id)`.
+- [ ] **Step 2:** `index.tsx` from `docs/mockups/screens/services.html`: title + sub; **«В роботі»** section (2 mock in-progress rows — e.g. "Отримання Ветеран-боксу" крок 2 з 3 with `ProgressBar`); **«Категорії»** 2-col grid over `categories` (rounded `Card`, `IconTile` line icon + name), tap → `router.push("/(tabs)/applications/" + cat.id)`.
 - [ ] **Step 3:** `[category].tsx` — read `useLocalSearchParams().category`; header = category name; list `servicesByCategory(category)` rows (title + meta + chevron), tap → `Alert` (detail is full-version). Port the old `catalog/[id].tsx` shared-element nicety if trivial; otherwise plain list.
 - [ ] **Step 4:** `npx tsc --noEmit`. **Commit** `git add app/(tabs)/applications && git commit -m "feat(native): Мої послуги (in-progress + category grid + detail)"`
 
@@ -986,7 +995,7 @@ export const logoSources: Record<string, any> = {
 
 ### Task 27: Manual smoke test in Expo Go
 
-- [ ] **Step 1:** `npm start`, open on device. Walk the flow and confirm:
+- [ ] **Step 1:** `npm start`, open on **iPhone 17 Pro Max** (Expo Go; or iOS Simulator "iPhone 17 Pro Max"). Walk the flow and confirm:
   - login → stage → health → housing → work → interests → profile (6 dots advance; back works; skip works on multi-selects).
   - "Будуємо ваш шлях" reveals lines, summary shows a number; "Далі".
   - Assignment screen shows a circular avatar + a specialist (changes if you reset with a different region/status); "Почати" → Home.
@@ -996,7 +1005,12 @@ export const logoSources: Record<string, any> = {
   - Мої послуги: «В роботі» on top, category grid below (rounded cards); tapping a category lists real scraped services.
   - AI-бро: typing dots → streamed greeting → prompt chips; sending shows a streamed reply.
   - Settings/GearButton → demo reset → returns to onboarding and clears gamification.
-- [ ] **Step 2:** Note any visual gaps vs mockups; fix in follow-up commits.
+- [ ] **Step 2: Native-feel pass (iPhone 17 Pro Max).** Confirm: stack transitions are smooth at
+  120 Hz; onboarding steps slide; the path-build lines stage in; the specialist avatar springs in;
+  level-ring and progress bars animate to value; press states scale; QR sheet drags to dismiss;
+  swipe-back works. Haptics fire on: option taps, tab switches, mission complete, step done,
+  specialist assigned, primary buttons. Layout respects the Dynamic Island + bottom safe area.
+- [ ] **Step 3:** Note any visual/motion gaps vs mockups + the native-feel mandate; fix in follow-up commits.
 
 ### Task 28: Update memory + spec status
 

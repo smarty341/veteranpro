@@ -72,6 +72,26 @@ success       #B0AB75   (no green in brand; khaki/light stand in)
   tokens. **Structure/props unchanged** — this is a recolor, not a rewrite.
 - `StatusBar` style flips to `light` app-wide.
 
+### Native feel (iOS-first) — a primary goal
+
+The app should feel **as native as possible on iPhone**. This is an explicit product goal and takes
+priority over the brand book's "minimal motion" guidance where they conflict — motion, depth, and
+haptics are welcome here, just kept tasteful.
+
+- **Target device:** iPhone 17 Pro Max (latest iOS, ProMotion 120 Hz, Dynamic Island, large
+  safe-area insets). Verify layouts against that screen; respect `useSafeAreaInsets()` top/bottom.
+- **Transitions:** lean into smooth screen transitions (expo-router stack animations; shared-element
+  where it reads well, e.g. category tile → detail). Onboarding steps slide; reveal/assignment use
+  staged fades + a spring/scale on the avatar. Aim for 120 Hz-smooth Reanimated animations on the UI
+  thread (no JS-driven layout jank).
+- **Visual effects:** subtle press states (scale 0.97–0.98), the level-ring fill animating up,
+  progress bars animating to value, mission-complete celebratory micro-animation, streamed-text
+  cursor. Keep them quick (150–280 ms) and purposeful.
+- **Haptics:** use `expo-haptics` generously but appropriately — selection tick on option taps and
+  tab switches (already wired via `lib/haptics.ts`), a success notification on mission complete /
+  path step done / specialist assigned, light impact on primary buttons. Don't buzz on every render.
+- **Gestures:** native-feeling scroll/bounce, swipe-back on stacks, drag-to-dismiss on the QR sheet.
+
 ---
 
 ## 4. Navigation
@@ -274,7 +294,7 @@ model call.
 - **Opening message (verbatim intent):**
   > «Привіт, я — твій цифровий бро. Підкажу по послугам від держави без «згідно-відповідно».»
 - After the opening finishes, show 3 **suggested-prompt chips**, e.g.:
-  «Яка допомога мені належить?» · «Як оформити картку ветерана?» · «Знижки поруч».
+  «Яка допомога мені належить?» · «Що таке Ветеран-бокс?» · «Знижки поруч».
 - Tapping a chip (or sending text in the bottom input) appends a **user bubble** (orange,
   right-aligned), then a bot **typing indicator → streamed canned reply** (bot bubble,
   `surfaceCard`, left-aligned, with the AI-бро avatar). Replies are a small keyed map of canned
