@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ветеран PRO — Мої послуги</title>
+<link rel="stylesheet" href="../_brand.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── page chrome (mockup frame only — shell/tokens come from _brand.css) ── */
+body{background:#17150f;color:var(--text);min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:34px 20px;}
+.cap{font-size:12px;color:#8a8079;text-align:center;max-width:300px;line-height:1.45;margin-top:14px;}
+.cap b{color:#c7bdb5;font-weight:600;}
+
+/* ── thematic block ── */
+.block{margin-top:22px;}
+.bhead{display:flex;align-items:center;gap:11px;margin-bottom:4px;}
+.bhead .tile{width:34px;height:34px;border-radius:8px;}
+.bhead .tile i{font-size:18px;}
+.bname{flex:1;min-width:0;font-size:14px;font-weight:600;letter-spacing:-.01em;}
+.allink{display:inline-flex;align-items:center;gap:2px;font-size:11.5px;color:var(--muted);
+  text-decoration:none;white-space:nowrap;cursor:pointer;}
+.allink i{font-size:14px;}
+
+/* service rows inside a block */
+.srow{display:flex;align-items:center;gap:10px;padding:11px 2px;cursor:pointer;
+  border-bottom:1px solid var(--line);}
+.srow:last-child{border-bottom:none;}
+.stitle{flex:1;min-width:0;font-size:13px;line-height:1.3;color:var(--text);}
+.srow > i{font-size:18px;color:var(--faint);flex:none;}
+
+/* in-progress strip (kept tiny) */
+.wip{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:11px 13px;margin-top:14px;display:flex;align-items:center;gap:11px;cursor:pointer;}
+.wip .tile{width:34px;height:34px;border-radius:8px;}
+.wip .tile i{font-size:18px;color:var(--accent);}
+.wip .grow{min-width:0;}
+.wip .wt{font-size:13px;font-weight:600;line-height:1.25;}
+.wip i.chev{font-size:18px;color:var(--faint);flex:none;}
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="notch"><i></i></div>
+  <div class="scr">
+
+    <!-- title -->
+    <div style="margin:6px 2px 0">
+      <div class="h1">Мої послуги</div>
+      <div class="sub">39 послуг · усі тематичні блоки</div>
+    </div>
+
+    <!-- tiny "в роботі" strip -->
+    <div class="sec" style="margin-top:16px">В роботі</div>
+    <div class="wip">
+      <div class="tile"><i class="ri-loader-4-line"></i></div>
+      <div class="grow">
+        <div class="wt">Подати заявку на програму «Ветеранський спорт»</div>
+        <div class="meta">Чернетка · залишилось 2 кроки</div>
+      </div>
+      <i class="ri-arrow-right-s-line chev"></i>
+    </div>
+
+    <!-- 1 · Здоров'я та відновлення -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-heart-pulse-line"></i></div>
+        <div class="bname">Здоров'я та відновлення</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Aмбулаторна реабілітація</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Протезування кінцівок</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Психологічні послуги</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 2 · Соцзахист і фінанси -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-shield-user-line"></i></div>
+        <div class="bname">Соцзахист і фінанси</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Щомісячна виплата за особливі заслуги</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Пенсія по інвалідності військовослужбовцям</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Компенсація за придбані засоби реабілітації</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 3 · Житло та інфраструктура -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-building-line"></i></div>
+        <div class="bname">Житло та інфраструктура</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Доступна іпотека «єОселя»</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Компенсації за державною програмою «єВідновлення»</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Компенсація за оренду житла</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 4 · Транспорт і пільги -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-bus-line"></i></div>
+        <div class="bname">Транспорт і пільги</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Переобладнання автомобіля</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Транспортні пільги</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Авто від держави</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 5 · Документи та статус -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-file-copy-2-line"></i></div>
+        <div class="bname">Документи та статус</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Отримання статусу та видача посвідчення УБД</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Отримання статусу та видача посвідчення ОІВВ</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Безоплатна правнича допомога</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 6 · Освіта та робота -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-graduation-cap-line"></i></div>
+        <div class="bname">Освіта та робота</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Державна допомога на навчання дітям</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Ваучери на освіту</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Вища освіта</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 7 · Податкові пільги -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-refund-2-line"></i></div>
+        <div class="bname">Податкові пільги</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Звільнення від земельного податку</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Податкові пільги</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Податкові пільги для мобілізованих ФОПів</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 8 · Спорт та змагання -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-basketball-line"></i></div>
+        <div class="bname">Спорт та змагання</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Подати заявку на програму «Ветеранський спорт»</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Заняття з адаптивного спорту</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Адаптивні клуби «Нестримні»</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 9 · Гранти та підтримка бізнесу -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-hand-coin-line"></i></div>
+        <div class="bname">Гранти та підтримка бізнесу</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Гранти «Варто»</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Мікрофінансування бізнесу</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Гранти «Власна справа» для ветеранів</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+    <!-- 10 · Послуги по регіону -->
+    <div class="block">
+      <div class="bhead">
+        <div class="tile"><i class="ri-map-pin-2-line"></i></div>
+        <div class="bname">Послуги по регіону</div>
+        <a class="allink">усі <i class="ri-arrow-right-s-line"></i></a>
+      </div>
+      <div class="srow"><span class="stitle">Щорічна матеріальна допомога учасникам бойових дій</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Матеріальна допомога військовослужбовцям на лікування</span><i class="ri-arrow-right-s-line"></i></div>
+      <div class="srow"><span class="stitle">Одноразова матеріальна допомога членам сімей загиблих</span><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+
+  </div>
+
+  <!-- bottom nav · FLAT LINE ICONS -->
+  <div class="nav">
+    <a><i class="ri-home-5-line"></i>Головна</a>
+    <a><i class="ri-price-tag-3-line"></i>Можливості</a>
+    <a><i class="ri-sparkling-2-line"></i>AI-бро</a>
+    <a class="on"><i class="ri-file-list-3-fill"></i>Мої послуги</a>
+  </div>
+</div>
+
+<div class="cap"><b>Мої послуги.</b> Каталог згорнуто у 10 тематичних блоків —
+плоский іконний заголовок із «усі ›» і три послуги-рядки в кожному; список прокручується,
+густина спокійна, без емодзі.</div>
+
+</body>
+</html>

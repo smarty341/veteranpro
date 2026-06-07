@@ -217,6 +217,7 @@ clear hero per screen, spacing (not borders) to separate sections, emoji only in
 line icons in chrome. Apply this restraint everywhere, not just Home.
 
 Ports the prototype `#s-home`, brand-styled:
+- **Single greeting** — «Привіт, Андрію 👋» only (no stacked «Доброго дня» + name; one greeting line).
 - Greeting + **level ring** (conic-style ring → RN: orange arc over track, level number center).
 - **Streak strip** (7 day cells; filled = orange-tinted).
 - **«Ваш шлях» progress card**: flat orange progress bar, "N / 18 кроків", → full path screen.

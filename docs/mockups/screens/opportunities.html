@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ветеран PRO — Можливості</title>
+<link rel="stylesheet" href="../_brand.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── page chrome (mockup frame only — shell/tokens come from _brand.css) ── */
+body{background:#17150f;color:var(--text);min-height:100vh;display:flex;flex-wrap:wrap;
+  align-items:flex-start;justify-content:center;gap:42px;padding:40px 24px;}
+.col{display:flex;flex-direction:column;align-items:center;}
+.cap{font-size:12px;color:#8a8079;text-align:center;max-width:300px;line-height:1.45;margin-top:14px;}
+.cap b{color:#c7bdb5;font-weight:600;}
+
+/* ── category chips (pills allowed) ── */
+.chips{display:flex;gap:8px;overflow-x:auto;margin:14px 0 4px;padding-bottom:2px;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{flex:none;font-size:12px;font-weight:500;padding:7px 13px;border-radius:999px;
+  background:var(--card);color:var(--muted);border:1px solid var(--line);white-space:nowrap;cursor:pointer;}
+.chip.on{background:var(--accent);color:#241200;border-color:var(--accent);font-weight:600;}
+
+/* ── offer card ── */
+.offer{display:flex;align-items:center;gap:12px;}
+.logo{width:46px;height:46px;border-radius:9px;flex:none;display:flex;align-items:center;
+  justify-content:center;font-size:14px;font-weight:700;color:#241200;letter-spacing:-.02em;}
+.logo.wog{background:var(--light);}
+.logo.rd{background:var(--warmgray);}
+.logo.m{background:var(--khaki);}
+.logo.cafe{background:var(--card2);font-size:21px;}
+.pname{font-size:14px;font-weight:600;line-height:1.2;}
+.disc{font-size:15px;font-weight:700;color:var(--accent);white-space:nowrap;line-height:1.1;text-align:right;}
+.qr{display:inline-flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;
+  color:var(--muted);font-size:11.5px;font-weight:500;padding:0;margin-top:7px;}
+.qr i{font-size:15px;color:var(--accent);}
+.offsep{height:1px;background:var(--line);margin:13px 0;}
+
+/* ── QR bottom sheet ── */
+.dim{position:absolute;inset:0;background:rgba(10,9,6,.66);z-index:5;}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:6;background:var(--card);
+  border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:10px 22px 26px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;}
+.handle{width:38px;height:4px;border-radius:999px;background:var(--line);margin:0 0 16px;}
+.sheet .stitle{font-size:16px;font-weight:600;}
+.sheet .ssub{font-size:12.5px;color:var(--muted);margin-top:4px;}
+.qrbox{width:170px;height:170px;margin:18px 0 4px;border:1px solid var(--line);border-radius:8px;
+  background:var(--text);
+  background-image:
+    repeating-linear-gradient(90deg, var(--bg) 0 8px, transparent 8px 16px),
+    repeating-linear-gradient(0deg, var(--bg) 0 8px, transparent 8px 16px);
+  background-blend-mode:normal;position:relative;overflow:hidden;}
+/* finder squares to read as a real QR */
+.qrbox::before,.qrbox::after{content:"";position:absolute;width:42px;height:42px;
+  background:var(--text);border:8px solid var(--bg);box-shadow:inset 0 0 0 6px var(--text);}
+.qrbox::before{top:10px;left:10px;}
+.qrbox::after{top:10px;right:10px;}
+.qrfind{position:absolute;bottom:10px;left:10px;width:42px;height:42px;background:var(--text);
+  border:8px solid var(--bg);box-shadow:inset 0 0 0 6px var(--text);}
+.refresh{font-size:11px;color:var(--faint);margin-top:6px;}
+.sheet .pill{margin-top:14px;}
+.sheet .btn.ghost{margin-top:18px;}
+</style>
+</head>
+<body>
+
+<!-- ════════════ PHONE 1 — offers list ════════════ -->
+<div class="col">
+<div class="phone">
+  <div class="notch"><i></i></div>
+  <div class="scr">
+
+    <div style="margin:6px 2px 0">
+      <div class="h1">Можливості</div>
+      <div class="sub">Знижки та пропозиції для ветеранів</div>
+    </div>
+
+    <!-- category chips -->
+    <div class="chips">
+      <span class="chip on">Усі</span>
+      <span class="chip">Поруч</span>
+      <span class="chip">Паливо</span>
+      <span class="chip">Одяг</span>
+      <span class="chip">Здоров'я</span>
+    </div>
+
+    <!-- WOG -->
+    <div class="card">
+      <div class="offer">
+        <div class="logo wog">WOG</div>
+        <div class="grow">
+          <div class="pname">WOG</div>
+          <div class="meta">Мережа АЗК</div>
+        </div>
+        <div class="disc">−5&nbsp;₴/л</div>
+      </div>
+      <button class="qr"><i class="ri-qr-code-line"></i> Показати QR</button>
+    </div>
+
+    <!-- Riot Division -->
+    <div class="card">
+      <div class="offer">
+        <div class="logo rd">RD</div>
+        <div class="grow">
+          <div class="pname">Riot Division</div>
+          <div class="meta">Одяг та екіпірування</div>
+        </div>
+        <div class="disc">−50%</div>
+      </div>
+      <button class="qr"><i class="ri-qr-code-line"></i> Показати QR</button>
+    </div>
+
+    <!-- Mindly -->
+    <div class="card">
+      <div class="offer">
+        <div class="logo m">M</div>
+        <div class="grow">
+          <div class="pname">Mindly</div>
+          <div class="meta">Психотерапія онлайн</div>
+        </div>
+        <div class="disc">5&nbsp;год<br>безкоштовно</div>
+      </div>
+      <button class="qr"><i class="ri-qr-code-line"></i> Показати QR</button>
+    </div>
+
+    <!-- Кав'ярня «Тил» (filler, emoji allowed) -->
+    <div class="card">
+      <div class="offer">
+        <div class="logo cafe">☕</div>
+        <div class="grow">
+          <div class="pname">Кав'ярня «Тил»</div>
+          <div class="meta">350 м · ветеранський бізнес</div>
+        </div>
+        <div class="disc">−20%</div>
+      </div>
+      <button class="qr"><i class="ri-qr-code-line"></i> Показати QR</button>
+    </div>
+
+  </div>
+
+  <!-- bottom nav · FLAT LINE ICONS · Можливості active -->
+  <div class="nav">
+    <a><i class="ri-home-5-line"></i>Головна</a>
+    <a class="on"><i class="ri-price-tag-3-fill"></i>Можливості</a>
+    <a><i class="ri-sparkling-2-line"></i>AI-бро</a>
+    <a><i class="ri-file-list-3-line"></i>Мої послуги</a>
+  </div>
+</div>
+<div class="cap"><b>Список можливостей.</b> Категорії-чіпи, спокійні картки: логотип, назва,
+один рядок мета та помаранчева знижка з дією «Показати QR».</div>
+</div>
+
+<!-- ════════════ PHONE 2 — QR bottom sheet ════════════ -->
+<div class="col">
+<div class="phone">
+  <div class="notch"><i></i></div>
+  <div class="scr" style="filter:saturate(.85)">
+
+    <div style="margin:6px 2px 0">
+      <div class="h1">Можливості</div>
+      <div class="sub">Знижки та пропозиції для ветеранів</div>
+    </div>
+
+    <div class="chips">
+      <span class="chip on">Усі</span>
+      <span class="chip">Поруч</span>
+      <span class="chip">Паливо</span>
+      <span class="chip">Одяг</span>
+      <span class="chip">Здоров'я</span>
+    </div>
+
+    <div class="card">
+      <div class="offer">
+        <div class="logo wog">WOG</div>
+        <div class="grow">
+          <div class="pname">WOG</div>
+          <div class="meta">Мережа АЗК</div>
+        </div>
+        <div class="disc">−5&nbsp;₴/л</div>
+      </div>
+      <button class="qr"><i class="ri-qr-code-line"></i> Показати QR</button>
+    </div>
+
+    <div class="card">
+      <div class="offer">
+        <div class="logo rd">RD</div>
+        <div class="grow">
+          <div class="pname">Riot Division</div>
+          <div class="meta">Одяг та екіпірування</div>
+        </div>
+        <div class="disc">−50%</div>
+      </div>
+      <button class="qr"><i class="ri-qr-code-line"></i> Показати QR</button>
+    </div>
+
+  </div>
+
+  <!-- dim + bottom sheet -->
+  <div class="dim"></div>
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="stitle">WOG · −5&nbsp;₴/л</div>
+    <div class="ssub">Покажіть на касі</div>
+
+    <div class="qrbox"><span class="qrfind"></span></div>
+    <div class="refresh">Оновлюється щохвилини</div>
+
+    <span class="pill ok">✓ Статус ветерана верифіковано</span>
+
+    <button class="btn ghost">Закрити</button>
+  </div>
+
+  <!-- bottom nav stays visible under the sheet edge -->
+  <div class="nav">
+    <a><i class="ri-home-5-line"></i>Головна</a>
+    <a class="on"><i class="ri-price-tag-3-fill"></i>Можливості</a>
+    <a><i class="ri-sparkling-2-line"></i>AI-бро</a>
+    <a><i class="ri-file-list-3-line"></i>Мої послуги</a>
+  </div>
+</div>
+<div class="cap"><b>QR-шторка.</b> Затемнений екран і нижня шторка: назва партнера, фейковий
+CSS-QR, пігулка верифікації статусу та примарна кнопка «Закрити».</div>
+</div>
+
+</body>
+</html>

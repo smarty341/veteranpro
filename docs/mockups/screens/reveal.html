@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ветеран PRO — Reveal · Будуємо шлях + Фахівець супроводу</title>
+<link rel="stylesheet" href="../_brand.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── page chrome (mockup frame only — shell/tokens come from _brand.css) ── */
+body{background:#17150f;color:var(--text);min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:34px 20px;}
+.stage{display:flex;flex-direction:row;gap:34px;flex-wrap:wrap;justify-content:center;align-items:flex-start;}
+.col{display:flex;flex-direction:column;align-items:center;}
+.cap{font-size:12px;color:#8a8079;text-align:center;max-width:300px;line-height:1.45;margin-top:14px;}
+.cap b{color:#c7bdb5;font-weight:600;}
+
+/* ── shared reveal-screen layout ── */
+.scr{padding:8px 16px 24px;}
+.center{text-align:center;}
+.lead-em{font-size:30px;line-height:1;margin-top:26px;}
+.lead-title{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-top:12px;}
+
+/* ── Screen 1 · building path ── */
+.bline{display:flex;align-items:flex-start;gap:11px;padding:9px 0;
+  opacity:0;transform:translateY(8px);transition:opacity .42s ease-out, transform .42s ease-out;}
+.bline.show{opacity:1;transform:none;}
+.bline + .bline{border-top:1px solid var(--line);}
+.bmark{flex:none;width:18px;text-align:center;font-size:14px;font-weight:700;line-height:1.45;}
+.bmark.add{color:var(--khaki);}
+.bmark.mod{color:var(--accent);}
+.bmark.rem{color:var(--faint);}
+.bem{flex:none;font-size:16px;line-height:1.4;}
+.btxt{font-size:13px;line-height:1.45;color:var(--text);}
+.btxt .q{color:var(--muted);}
+
+.summary{opacity:0;transform:translateY(8px);transition:opacity .5s ease-out, transform .5s ease-out;
+  border-left:3px solid var(--accent);margin-top:16px;}
+.summary.show{opacity:1;transform:none;}
+.summary .big{font-size:15px;font-weight:600;line-height:1.4;}
+.summary .big b{color:var(--accent);}
+.summary .note{font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.45;}
+.fadebtn{opacity:0;transition:opacity .5s ease-out;}
+.fadebtn.show{opacity:1;}
+
+/* ── Screen 2 · specialist assignment ── */
+.avatar-xl{width:96px;height:96px;border-radius:50%;background:var(--warmgray);
+  display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:600;color:#241200;
+  margin:24px auto 0;position:relative;flex:none;
+  box-shadow:0 0 0 3px var(--accent), 0 0 0 12px rgba(238,117,77,.12);
+  opacity:0;transform:scale(.82);
+  animation:pop .55s cubic-bezier(.2,.7,.3,1) .2s forwards;}
+@keyframes pop{to{opacity:1;transform:scale(1);}}
+.specname{font-size:18px;font-weight:600;letter-spacing:-.01em;}
+.flatcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px;margin-top:20px;}
+.blurb{font-size:13.5px;line-height:1.5;color:var(--text);margin-top:12px;}
+.actions{display:flex;gap:10px;margin-top:18px;}
+.actions .btn{margin-top:0;}
+.actions .btn.ghost{display:flex;align-items:center;justify-content:center;gap:6px;}
+.spacer{flex:1;min-height:14px;}
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- ════════ SCREEN 1 · Будуємо твій шлях ════════ -->
+  <div class="col">
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="scr">
+
+        <div class="center">
+          <div class="lead-em">🛠️</div>
+          <div class="lead-title">Будуємо твій шлях</div>
+          <div class="sub">Нічого не приховуємо — ось логіка:</div>
+        </div>
+
+        <div class="card" style="margin-top:18px;padding:6px 13px">
+          <div class="bline" data-i="0">
+            <span class="bmark mod">↻</span>
+            <span class="bem">📋</span>
+            <span class="btxt">Базовий шлях УБД — <span class="q">18 кроків</span></span>
+          </div>
+          <div class="bline" data-i="1">
+            <span class="bmark add">＋</span>
+            <span class="bem">🎖️</span>
+            <span class="btxt">«90 днів до виходу»: підготовка ще на службі</span>
+          </div>
+          <div class="bline" data-i="2">
+            <span class="bmark add">＋</span>
+            <span class="bem">🎓</span>
+            <span class="btxt">Грант на освіту дітей — держава платить напряму</span>
+          </div>
+          <div class="bline" data-i="3">
+            <span class="bmark add">＋</span>
+            <span class="bem">🏠</span>
+            <span class="btxt">єОселя: іпотека під 7%</span>
+          </div>
+          <div class="bline" data-i="4">
+            <span class="bmark mod">↑</span>
+            <span class="bem">♿</span>
+            <span class="btxt">Статус ОІВВ → МСЕК, протезування, авто</span>
+          </div>
+          <div class="bline" data-i="5">
+            <span class="bmark rem">−</span>
+            <span class="bem">✂️</span>
+            <span class="btxt"><span class="q">Прибрано неактуальні кроки — шлях коротший</span></span>
+          </div>
+        </div>
+
+        <div class="card summary">
+          <div class="big">Твій шлях готовий: <b>21 крок</b> у 5 етапах</div>
+          <div class="note">Зміниться автоматично, якщо зміняться обставини</div>
+        </div>
+
+        <button class="btn fadebtn">Далі →</button>
+
+      </div>
+    </div>
+    <div class="cap"><b>1 · «Будуємо твій шлях».</b> The transparency reveal —
+    add/modify/remove lines slide in in sequence, then a calm summary and «Далі».</div>
+  </div>
+
+  <!-- ════════ SCREEN 2 · Фахівець супроводу ════════ -->
+  <div class="col">
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="scr" style="display:flex;flex-direction:column">
+
+        <div class="center" style="padding-top:14px">
+          <span class="pill ok">Супровід активовано</span>
+          <div class="lead-title" style="margin-top:16px;padding:0 6px">
+            Вам призначено персонального фахівця супроводу
+          </div>
+        </div>
+
+        <div class="avatar-xl">ОК</div>
+
+        <div class="flatcard">
+          <div class="specname">Оксана Кравець</div>
+          <div class="meta" style="font-size:12px;margin-top:4px">Фахівчиня із супроводу · Київська обл.</div>
+          <div class="blurb">«Я поруч на кожному кроці — від документів до роботи.»</div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="actions">
+          <button class="btn ghost"><i class="ri-chat-3-line"></i>Написати</button>
+          <button class="btn">Почати</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="cap"><b>2 · Персональний фахівець.</b> The emotional moment kept calm —
+    one circular avatar scales in, a single flat card and two quiet actions.</div>
+  </div>
+
+</div>
+
+<script>
+  // Screen 1 — stagger the reveal lines, then summary + button.
+  var lines = document.querySelectorAll('.bline');
+  var step = 420;
+  lines.forEach(function (el, i) {
+    setTimeout(function () { el.classList.add('show'); }, 300 + i * step);
+  });
+  var after = 300 + lines.length * step;
+  setTimeout(function () {
+    var s = document.querySelector('.summary');
+    if (s) s.classList.add('show');
+  }, after);
+  setTimeout(function () {
+    var b = document.querySelector('.fadebtn');
+    if (b) b.classList.add('show');
+  }, after + 280);
+</script>
+
+</body>
+</html>

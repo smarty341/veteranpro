@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ветеран PRO — Онбординг</title>
+<link rel="stylesheet" href="../_brand.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── page chrome (mockup frame only — shell/tokens come from _brand.css) ── */
+body{background:#17150f;color:var(--text);min-height:100vh;padding:40px 24px;}
+.stage{display:flex;flex-direction:row;gap:34px;justify-content:center;align-items:flex-start;flex-wrap:wrap;}
+.unit{display:flex;flex-direction:column;align-items:center;}
+.cap{font-size:12px;color:#8a8079;text-align:center;max-width:300px;line-height:1.45;margin-top:14px;}
+.cap b{color:#c7bdb5;font-weight:600;}
+.lede{text-align:center;max-width:760px;margin:0 auto 30px;}
+.lede h1{font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.01em;}
+.lede p{font-size:12.5px;color:#8a8079;margin-top:6px;line-height:1.5;}
+
+/* onboarding screens have NO bottom nav → reclaim that padding */
+.scr.ob{padding:6px 18px 20px;display:flex;flex-direction:column;}
+
+/* ── onboarding scaffold: back · dots · skip ── */
+.obtop{display:flex;align-items:center;height:40px;margin:2px 0 6px;}
+.obtop .back{width:30px;display:flex;align-items:center;color:var(--muted);font-size:24px;cursor:pointer;}
+.obtop .back.hidden{visibility:hidden;}
+.dots{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;}
+.dots span{width:6px;height:6px;border-radius:999px;background:var(--card2);transition:.2s;}
+.dots span.on{width:18px;background:var(--accent);}
+.obtop .skipt{width:auto;min-width:30px;text-align:right;color:var(--muted);font-size:12.5px;cursor:pointer;}
+.obtop .skipt.hidden{visibility:hidden;}
+
+/* ── question header ── */
+.qhead{margin:14px 2px 18px;}
+.qhead .h1{font-size:22px;line-height:1.18;}
+.qhead .sub{margin-top:8px;}
+
+/* ── single / multi option rows ── */
+.opt{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r);padding:14px 13px;margin-bottom:11px;cursor:pointer;}
+.opt.sel{border-color:var(--accent);}
+.opt .oem{font-size:23px;flex:none;line-height:1;}
+.opt .otxt{flex:1;min-width:0;}
+.opt .olbl{font-size:14.5px;font-weight:600;line-height:1.2;}
+.opt .osub{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.4;}
+
+/* multi-select checkbox */
+.cbox{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--line);flex:none;
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:14px;}
+.cbox.ck{background:var(--accent);border-color:var(--accent);color:#241200;}
+
+/* ── screen 6 pickers ── */
+.flbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin:2px 2px 8px;}
+.field{display:flex;align-items:center;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--r);padding:14px 13px;cursor:pointer;}
+.field .fval{flex:1;font-size:14.5px;font-weight:500;}
+.field i{color:var(--muted);font-size:22px;}
+.seg{display:flex;gap:9px;}
+.seg button{flex:1;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:13px 6px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;}
+.seg button.on{border-color:var(--accent);color:var(--text);}
+.pushdown{margin-top:auto;}
+</style>
+</head>
+<body>
+
+<div class="lede">
+  <h1>Онбординг — потребо-орієнтований майстер на 6 кроків</h1>
+  <p>Тихий темний MoVA-інтерфейс, один помаранчевий акцент. Без нижньої навігації. Одиночний вибір
+  авто-переходить; мульти-вибір має «Далі» + «Пропустити».</p>
+</div>
+
+<div class="stage">
+
+  <!-- ════════════ SCREEN 1 · Етап (single, auto-advance) ════════════ -->
+  <div class="unit">
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="scr ob">
+
+        <div class="obtop">
+          <div class="back hidden"><i class="ri-arrow-left-s-line"></i></div>
+          <div class="dots">
+            <span class="on"></span><span></span><span></span>
+            <span></span><span></span><span></span>
+          </div>
+          <div class="skipt hidden">Пропустити</div>
+        </div>
+
+        <div class="qhead">
+          <div class="h1">На якому ти етапі?</div>
+          <div class="sub">Від цього залежить, з чого почнеться твій шлях.</div>
+        </div>
+
+        <div class="opt">
+          <span class="oem">🪖</span>
+          <div class="otxt"><div class="olbl">Ще служу</div>
+            <div class="osub">У війську, на службі</div></div>
+        </div>
+        <div class="opt sel">
+          <span class="oem">📋</span>
+          <div class="otxt"><div class="olbl">Звільняюсь найближчим часом</div>
+            <div class="osub">Готуюсь до переходу</div></div>
+        </div>
+        <div class="opt">
+          <span class="oem">🏠</span>
+          <div class="otxt"><div class="olbl">Вже звільнився</div>
+            <div class="osub">У цивільному житті</div></div>
+        </div>
+        <div class="opt">
+          <span class="oem">👪</span>
+          <div class="otxt"><div class="olbl">Я з родини ветерана</div>
+            <div class="osub">Дружина, батьки, діти</div></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="cap"><b>1 · Етап (1/6).</b> Одиночний вибір — тап одразу веде далі,
+    тож кнопки немає. На першому кроці назад і «Пропустити» приховані.</div>
+  </div>
+
+  <!-- ════════════ SCREEN 2 · Сім'я і житло (multi-select) ════════════ -->
+  <div class="unit">
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="scr ob">
+
+        <div class="obtop">
+          <div class="back"><i class="ri-arrow-left-s-line"></i></div>
+          <div class="dots">
+            <span></span><span></span><span class="on"></span>
+            <span></span><span></span><span></span>
+          </div>
+          <div class="skipt">Пропустити</div>
+        </div>
+
+        <div class="qhead">
+          <div class="h1">Сім'я і житло</div>
+          <div class="sub">Можна обрати декілька.</div>
+        </div>
+
+        <div class="opt sel">
+          <span class="oem">🧒</span>
+          <div class="otxt"><div class="olbl">Є діти</div>
+            <div class="osub">Пільги та виплати для родин</div></div>
+          <div class="cbox ck"><i class="ri-check-line"></i></div>
+        </div>
+        <div class="opt">
+          <span class="oem">🏡</span>
+          <div class="otxt"><div class="olbl">Є своє житло</div>
+            <div class="osub">Власна квартира чи будинок</div></div>
+          <div class="cbox"><i class="ri-check-line"></i></div>
+        </div>
+        <div class="opt sel">
+          <span class="oem">🔑</span>
+          <div class="otxt"><div class="olbl">Орендую або шукаю житло</div>
+            <div class="osub">Програми компенсації оренди</div></div>
+          <div class="cbox ck"><i class="ri-check-line"></i></div>
+        </div>
+        <div class="opt">
+          <span class="oem">🧱</span>
+          <div class="otxt"><div class="olbl">Житло пошкоджене</div>
+            <div class="osub">Відновлення та «єВідновлення»</div></div>
+          <div class="cbox"><i class="ri-check-line"></i></div>
+        </div>
+
+        <div class="pushdown">
+          <button class="btn">Далі</button>
+          <button class="skip">Пропустити</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="cap"><b>2 · Сім'я і житло (3/6).</b> Мульти-вибір — праворуч чекбокс
+    (помаранчевий = обрано). Знизу основна «Далі» та текстове «Пропустити».</div>
+  </div>
+
+  <!-- ════════════ SCREEN 3 · Локація + Статус (two pickers) ════════════ -->
+  <div class="unit">
+    <div class="phone">
+      <div class="notch"><i></i></div>
+      <div class="scr ob">
+
+        <div class="obtop">
+          <div class="back"><i class="ri-arrow-left-s-line"></i></div>
+          <div class="dots">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span class="on"></span>
+          </div>
+          <div class="skipt hidden">Пропустити</div>
+        </div>
+
+        <div class="qhead">
+          <div class="h1">Останній крок</div>
+          <div class="sub">Локація та статус — щоб підібрати саме ваші послуги.</div>
+        </div>
+
+        <div class="flbl">Регіон</div>
+        <div class="field" style="margin-bottom:22px">
+          <span class="fval">Київ</span>
+          <i class="ri-arrow-down-s-line"></i>
+        </div>
+
+        <div class="flbl">Статус</div>
+        <div class="seg">
+          <button class="on">УБД</button>
+          <button>ОІВВ</button>
+          <button>ЧСЗ</button>
+        </div>
+
+        <div class="pushdown">
+          <button class="btn">Завершити</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="cap"><b>3 · Локація + Статус (6/6).</b> Два компактні пікери на одному
+    екрані: регіон-рядок із розкривним полем і сегментований статус. Завершальна кнопка «Завершити».</div>
+  </div>
+
+</div>
+
+</body>
+</html>
