@@ -291,8 +291,27 @@ model call.
 `app/(tabs)/applications/index.tsx` (rebuilt) becomes:
 - Top: in-progress / recommended services (re-keyed off `status` + needs via the existing
   `recommend()` in `lib/recommendations.ts`, adapted to the new profile shape).
-- Below: the full **category grid** (moved from the old Каталог tab) → category detail screens.
+- Below: **all 10 thematic blocks** rendered as sections (Здоров'я та відновлення, Соцзахист і
+  фінанси, Житло та інфраструктура, Транспорт і пільги, Документи та статус, Освіта та робота,
+  Податкові пільги, Спорт та змагання, Гранти та підтримка бізнесу, Послуги по регіону). Each
+  block shows **3–4 example services** as rows (flat `IconTile` line icon + title + meta), tapping
+  a service → its detail screen, and a "Усі" affordance into the category detail. The flat
+  category grid from the old Каталог tab is folded into this view (either as the block headers or
+  a compact grid at the top).
 - The specialist card also surfaces here.
+
+### Data source — REAL services only (no invented content)
+
+- The 3–4 services per block come from **scraped veteranpro.gov.ua data**, written to
+  `content/services.scraped.json` by a dedicated scrape pass (API base
+  `https://api.veteranpro.gov.ua/api/front`). See `docs/superpowers/specs/veteranpro-scrape-report.md`
+  for endpoints, category mapping, and any gaps.
+- At build/import time these merge with the existing `content/articles.generated.ts` set (same
+  `Article` shape). Do **not** fabricate services; if a thematic block has no real data from the
+  scrape, render it with fewer items (or a "скоро" placeholder) rather than inventing entries.
+- **Dependency:** this section's content is blocked on the scrape deliverable. The UI can be built
+  against the existing 6 articles + a typed import of `services.scraped.json`; the data lands when
+  the scrape completes.
 
 ---
 
