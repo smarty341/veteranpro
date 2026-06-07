@@ -48,10 +48,10 @@ light/paper, charcoal + single orange accent, square corners, no gradients, no e
 `lib/theme.ts` moves from the light paper palette to a dark token set. New/changed tokens:
 
 ```
-surface       #2D2926   app background (brand inverse)
-surfaceCard   #383330   raised cards
-surfaceCard2  #423C38   nested / pressed
-border        #4A433F   hairline on dark
+surface       #1A1714   app background (warm near-black; darkened from #2D2926 per design review)
+surfaceCard   #322D2A   raised cards (the brand-charcoal tone, lifts off the darker surface)
+surfaceCard2  #3C3633   nested / pressed
+border        #473F3B   hairline on dark
 text          #E9E4E3   primary (paper)
 textMuted     #A89F98   secondary
 textFaint     #7A736D   tertiary
@@ -207,6 +207,14 @@ completedMissionIds: string[]         // seeded []
   adds XP, may trigger a level-up (haptic + toast).
 
 ### Home `app/(tabs)/index.tsx` (rebuilt)
+
+**Chosen layout: "Path-hero" (mockup Variant A), decluttered.** The adaptation path is the
+centerpiece; the specialist is a single quiet compact row; secondary chrome (stage tracker,
+booster teaser, mission sub-bars) is omitted. Reference mock: `docs/mockups/screens/home-a.html`.
+
+**Density standard for ALL screens (from the design review):** calm, generous whitespace, one
+clear hero per screen, spacing (not borders) to separate sections, emoji only in content, flat
+line icons in chrome. Apply this restraint everywhere, not just Home.
 
 Ports the prototype `#s-home`, brand-styled:
 - Greeting + **level ring** (conic-style ring → RN: orange arc over track, level number center).

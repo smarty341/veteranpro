@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ветеран PRO — Головна · Variant B (Concierge-first)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="../_brand.css">
+<style>
+  /* ── page frame (mockup gallery chrome only) ── */
+  body{background:#1a1816;min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:12px;padding:32px 16px;}
+  .col{display:flex;flex-direction:column;align-items:center;gap:11px;}
+  .cap{font-size:12px;color:#8a8079;text-align:center;max-width:300px;line-height:1.45;}
+  .cap b{color:#c7bdb5;font-weight:600;}
+
+  /* ── compact greeting ── */
+  .greet{font-size:12px;color:var(--muted);}
+
+  /* ── HERO specialist card — flat, calm, single soft halo ── */
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:24px 18px 18px;margin-top:16px;text-align:center;}
+  .hero .avatar{width:88px;height:88px;border-radius:50%;margin:0 auto;display:flex;align-items:center;
+    justify-content:center;font-size:32px;font-weight:600;color:#241200;background:var(--warmgray);
+    border:3px solid var(--accent);box-shadow:0 0 0 8px rgba(238,117,77,.10);}
+  .hero .name{font-size:18px;font-weight:600;margin-top:18px;letter-spacing:-.01em;}
+  .hero .role{font-size:12px;color:var(--muted);margin-top:5px;}
+  .hero .msg{font-size:13px;line-height:1.55;color:var(--text);margin:14px 10px 0;}
+  .hero .acts{display:flex;gap:9px;margin-top:20px;}
+  .hero .acts .btn{margin-top:0;display:flex;align-items:center;justify-content:center;gap:6px;}
+  .hero .acts .btn i{font-size:16px;}
+
+  /* ── path progress card ── */
+  .xp{color:var(--accent);font-size:11.5px;font-weight:700;white-space:nowrap;}
+  .pathlink{display:flex;align-items:center;justify-content:flex-end;gap:4px;
+    font-size:12px;font-weight:600;color:var(--accent);margin-top:12px;cursor:pointer;}
+  .pathlink i{font-size:15px;}
+
+  /* ── mission rows ── */
+  .mtile{width:40px;height:40px;border-radius:9px;background:var(--card2);display:flex;
+    align-items:center;justify-content:center;flex:none;font-size:20px;}
+  .mtitle{font-size:13px;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="col">
+  <div class="phone">
+    <div class="notch"><i></i></div>
+    <div class="scr">
+
+      <!-- compact greeting -->
+      <div style="margin:6px 2px 0">
+        <div class="greet">Доброго дня 👋</div>
+        <div class="h1">Привіт, Андрію</div>
+      </div>
+
+      <!-- HERO · specialist as the emotional centerpiece -->
+      <div class="hero">
+        <div class="avatar">ОК</div>
+        <div class="name">Оксана Кравець</div>
+        <div class="role">Фахівчиня із супроводу · Київська обл.</div>
+        <div class="msg">Я поруч на кожному кроці. Напишіть, коли треба.</div>
+        <div class="acts">
+          <button class="btn"><i class="ri-chat-3-line"></i> Написати</button>
+          <button class="btn ghost"><i class="ri-phone-line"></i> Зателефонувати</button>
+        </div>
+      </div>
+
+      <!-- path progress -->
+      <div class="sec">Твій шлях</div>
+      <div class="card">
+        <div class="row" style="margin-bottom:10px">
+          <div class="grow h2" style="font-size:14px">УБД</div>
+          <span class="xp">6 / 21</span>
+        </div>
+        <div class="bar"><i style="width:29%"></i></div>
+        <div class="pathlink">весь шлях <i class="ri-arrow-right-line"></i></div>
+      </div>
+
+      <!-- active missions -->
+      <div class="sec">Активні місії</div>
+
+      <div class="card">
+        <div class="row">
+          <span class="mtile">💳</span>
+          <div class="grow"><div class="mtitle">Оформи картку ветерана</div></div>
+          <span class="xp">+150 XP</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <span class="mtile">🏃</span>
+          <div class="grow"><div class="mtitle">Заявка «Ветеранський спорт»</div></div>
+          <span class="xp">+200 XP</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="nav">
+      <a class="on"><i class="ri-home-5-fill"></i>Головна</a>
+      <a><i class="ri-price-tag-3-line"></i>Можливості</a>
+      <a><i class="ri-sparkling-2-line"></i>AI-бро</a>
+      <a><i class="ri-file-list-3-line"></i>Мої послуги</a>
+    </div>
+  </div>
+  <div class="cap"><b>Головна · Variant B — «Concierge-first».</b> Специалістка-наставниця як спокійний центр угорі (аватарка з одним ореолом, тепле повідомлення, «Написати» / «Зателефонувати»), нижче — тихий прогрес УБД і дві місії з +XP.</div>
+</div>
+</body>
+</html>

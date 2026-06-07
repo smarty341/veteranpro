@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ветеран PRO — Головна · Variant A (Path-hero)</title>
+<link rel="stylesheet" href="../_brand.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── page chrome (mockup frame only — shell/tokens come from _brand.css) ── */
+body{background:#17150f;color:var(--text);min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:34px 20px;}
+.cap{font-size:12px;color:#8a8079;text-align:center;max-width:300px;line-height:1.45;margin-top:14px;}
+.cap b{color:#c7bdb5;font-weight:600;}
+
+/* ── greeting / level ring ── */
+.greet{font-size:12px;color:var(--muted);}
+.ring{width:54px;height:54px;border-radius:50%;flex:none;
+  background:conic-gradient(var(--accent) 0 62%, var(--card2) 62% 100%);
+  display:flex;align-items:center;justify-content:center;}
+.ring i{width:43px;height:43px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font-style:normal;}
+.ring b{font-size:16px;color:var(--accent);font-weight:700;line-height:1;}
+.ring span{font-size:7.5px;color:var(--muted);margin-top:2px;}
+
+/* ── HERO path card (the one centrepiece) ── */
+.hero{background:var(--card);border-radius:var(--r);
+  padding:18px 17px 17px;margin-top:18px;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);}
+.hero .eyebrow{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--khaki);}
+.hero .title{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-top:4px;}
+.hero .pct{font-size:12px;color:var(--muted);}
+.hero .pct b{color:var(--accent);font-weight:700;}
+.barlg{height:10px;background:var(--card2);border-radius:999px;overflow:hidden;margin:14px 0 12px;}
+.barlg i{display:block;height:100%;background:var(--accent);border-radius:999px;}
+.streakline{font-size:11.5px;color:var(--muted);}
+.streakline b{color:var(--text);font-weight:600;}
+.heroBtn{display:inline-flex;align-items:center;gap:6px;background:none;border:none;
+  color:var(--accent);font-size:13px;font-weight:600;cursor:pointer;padding:0;margin-top:14px;}
+
+/* ── missions ── */
+.xp{color:var(--accent);font-size:11.5px;font-weight:700;white-space:nowrap;}
+.mtitle{font-size:13.5px;font-weight:600;line-height:1.25;}
+.mcard{background:var(--card);border-radius:var(--r);padding:14px 13px;margin-bottom:10px;}
+
+/* ── specialist (single quiet row) ── */
+.spec{display:flex;align-items:center;gap:11px;padding:4px 2px;margin-top:2px;}
+.avatar.sm{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:600;color:#241200;background:var(--warmgray);flex:none;}
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="notch"><i></i></div>
+  <div class="scr">
+
+    <!-- top bar: greeting + level ring -->
+    <div class="row" style="margin:6px 2px 0">
+      <div class="grow">
+        <div class="greet">Доброго дня 👋</div>
+        <div class="h1">Привіт, Андрію</div>
+      </div>
+      <div class="ring"><i><b>3</b><span>рівень</span></i></div>
+    </div>
+
+    <!-- HERO: the path is the centrepiece -->
+    <div class="hero">
+      <div class="row" style="align-items:flex-start">
+        <div class="grow">
+          <div class="eyebrow">Твій шлях</div>
+          <div class="title">УБД</div>
+        </div>
+        <div class="pct"><b>6</b> / 21 кроків</div>
+      </div>
+
+      <div class="barlg"><i style="width:29%"></i></div>
+
+      <div class="streakline"><b>7 днів поспіль</b> 🔥</div>
+
+      <button class="heroBtn">Весь шлях <i class="ri-arrow-right-line"></i></button>
+    </div>
+
+    <!-- ACTIVE MISSIONS — two, minimal -->
+    <div class="sec">Активні місії</div>
+
+    <div class="mcard">
+      <div class="row">
+        <span class="em">💳</span>
+        <div class="grow"><div class="mtitle">Оформи картку ветерана</div>
+          <div class="meta">Залишилось 2 кроки</div></div>
+        <span class="xp">+150 XP</span>
+      </div>
+    </div>
+
+    <div class="mcard">
+      <div class="row">
+        <span class="em">🏃</span>
+        <div class="grow"><div class="mtitle">Заявка «Ветеранський спорт»</div>
+          <div class="meta">1 500 грн щокварталу</div></div>
+        <span class="xp">+200 XP</span>
+      </div>
+    </div>
+
+    <!-- SPECIALIST — single quiet row -->
+    <div class="sec">Твій супровід</div>
+    <div class="spec">
+      <div class="avatar sm">ОК</div>
+      <div class="grow">
+        <div style="font-weight:600;font-size:13px">Оксана — фахівець супроводу</div>
+      </div>
+      <i class="ri-chat-3-line" style="color:var(--accent);font-size:20px"></i>
+    </div>
+
+  </div>
+
+  <!-- bottom nav · FLAT LINE ICONS -->
+  <div class="nav">
+    <a class="on"><i class="ri-home-5-fill"></i>Головна</a>
+    <a><i class="ri-price-tag-3-line"></i>Можливості</a>
+    <a><i class="ri-sparkling-2-line"></i>AI-бро</a>
+    <a><i class="ri-file-list-3-line"></i>Мої послуги</a>
+  </div>
+</div>
+
+<div class="cap"><b>Variant A · «Path-hero».</b> The adaptation path stays the single
+hero — progress, one quiet streak line and a «весь шлях» link; two minimal missions and a
+compact specialist row follow with generous whitespace.</div>
+
+</body>
+</html>

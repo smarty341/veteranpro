@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ветеран PRO — Головна · Variant B (Concierge-first)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+/* ============================================================
+   Ветеран PRO — shared dark/MoVA brand foundation for mockups
+   Every per-screen mockup MUST link this file and reuse these
+   tokens + base components so all screens stay consistent.
+   Charcoal "inverse/memorial" surface · single orange accent ·
+   khaki/warm-gray/light category tints · square corners ·
+   FLAT LINE ICONS in nav & catalogue · emoji only in content.
+   Font is Inter (stand-in for the licensed e-Ukraine).
+   ============================================================ */
+:root{
+  /* surface darkened per feedback (warm near-black derived from brand charcoal);
+     cards keep the previous charcoal tone so they lift off the background */
+  --bg:#1A1714; --card:#322D2A; --card2:#3C3633; --line:#473F3B;
+  --text:#E9E4E3; --muted:#A89F98; --faint:#7A736D;
+  --accent:#EE754D; --accentPress:#C9531F;
+  --khaki:#B0AB75; --warmgray:#A19388; --light:#E6E88F;
+  --r:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',-apple-system,'Segoe UI',sans-serif;}
+
+/* ── phone shell (reuse verbatim so all screens are the same size) ── */
+.phone{width:320px;height:680px;background:var(--bg);border-radius:36px;border:7px solid #0e0d09;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);overflow:hidden;position:relative;display:flex;flex-direction:column;color:var(--text);}
+.notch{height:24px;flex:none;display:flex;justify-content:center;align-items:flex-end;}
+.notch i{width:100px;height:18px;background:#0e0d09;border-radius:0 0 12px 12px;}
+.scr{flex:1;overflow-y:auto;padding:8px 16px 78px;}
+.scr::-webkit-scrollbar{display:none;}
+
+/* ── shared type & components ── */
+.h1{font-size:21px;font-weight:600;letter-spacing:-.01em;}
+.h2{font-size:16px;font-weight:600;}
+.sub{color:var(--muted);font-size:12.5px;line-height:1.5;margin-top:4px;}
+.sec{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin:18px 2px 9px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px;margin-bottom:10px;}
+.row{display:flex;align-items:center;gap:11px;}
+.grow{flex:1;min-width:0;}
+.meta{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.btn{display:block;width:100%;background:var(--accent);color:#241200;border:none;border-radius:8px;
+  padding:13px;font-size:14px;font-weight:600;cursor:pointer;text-align:center;margin-top:6px;}
+.btn:active{background:var(--accentPress);}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500;}
+.skip{display:block;text-align:center;color:var(--muted);font-size:12.5px;margin-top:12px;
+  background:none;border:none;width:100%;text-decoration:underline;cursor:pointer;}
+.pill{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.04em;
+  padding:3px 9px;border-radius:999px;background:var(--card2);color:var(--muted);border:1px solid var(--line);}
+.pill.ok{color:#caa15a;border-color:#5a4716;}
+.bar{height:7px;background:var(--card2);border-radius:999px;overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:999px;}
+.em{font-size:21px;flex:none;}
+.tile{width:40px;height:40px;border-radius:9px;background:var(--card2);display:flex;align-items:center;
+  justify-content:center;flex:none;color:var(--text);}
+.tile i{font-size:21px;color:var(--khaki);}
+
+/* ── bottom nav · FLAT LINE ICONS, never emoji ── */
+.nav{position:absolute;bottom:0;left:0;right:0;height:60px;background:rgba(26,23,20,.98);
+  border-top:1px solid var(--line);display:flex;}
+.nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  color:var(--muted);font-size:10px;text-decoration:none;position:relative;cursor:pointer;}
+.nav a i{font-size:21px;}
+.nav a.on{color:var(--accent);}
+.nav a.on::before{content:"";position:absolute;top:0;width:26px;height:2.5px;background:var(--accent);border-radius:0 0 3px 3px;}
+
+</style>
+<style>
+  /* ── page frame (mockup gallery chrome only) ── */
+  body{background:#1a1816;min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:12px;padding:32px 16px;}
+  .col{display:flex;flex-direction:column;align-items:center;gap:11px;}
+  .cap{font-size:12px;color:#8a8079;text-align:center;max-width:300px;line-height:1.45;}
+  .cap b{color:#c7bdb5;font-weight:600;}
+
+  /* ── compact greeting ── */
+  .greet{font-size:12px;color:var(--muted);}
+
+  /* ── HERO specialist card — flat, calm, single soft halo ── */
+  .hero{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:24px 18px 18px;margin-top:16px;text-align:center;}
+  .hero .avatar{width:88px;height:88px;border-radius:50%;margin:0 auto;display:flex;align-items:center;
+    justify-content:center;font-size:32px;font-weight:600;color:#241200;background:var(--warmgray);
+    border:3px solid var(--accent);box-shadow:0 0 0 8px rgba(238,117,77,.10);}
+  .hero .name{font-size:18px;font-weight:600;margin-top:18px;letter-spacing:-.01em;}
+  .hero .role{font-size:12px;color:var(--muted);margin-top:5px;}
+  .hero .msg{font-size:13px;line-height:1.55;color:var(--text);margin:14px 10px 0;}
+  .hero .acts{display:flex;gap:9px;margin-top:20px;}
+  .hero .acts .btn{margin-top:0;display:flex;align-items:center;justify-content:center;gap:6px;}
+  .hero .acts .btn i{font-size:16px;}
+
+  /* ── path progress card ── */
+  .xp{color:var(--accent);font-size:11.5px;font-weight:700;white-space:nowrap;}
+  .pathlink{display:flex;align-items:center;justify-content:flex-end;gap:4px;
+    font-size:12px;font-weight:600;color:var(--accent);margin-top:12px;cursor:pointer;}
+  .pathlink i{font-size:15px;}
+
+  /* ── mission rows ── */
+  .mtile{width:40px;height:40px;border-radius:9px;background:var(--card2);display:flex;
+    align-items:center;justify-content:center;flex:none;font-size:20px;}
+  .mtitle{font-size:13px;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="col">
+  <div class="phone">
+    <div class="notch"><i></i></div>
+    <div class="scr">
+
+      <!-- compact greeting -->
+      <div style="margin:6px 2px 0">
+        <div class="greet">Доброго дня 👋</div>
+        <div class="h1">Привіт, Андрію</div>
+      </div>
+
+      <!-- HERO · specialist as the emotional centerpiece -->
+      <div class="hero">
+        <div class="avatar">ОК</div>
+        <div class="name">Оксана Кравець</div>
+        <div class="role">Фахівчиня із супроводу · Київська обл.</div>
+        <div class="msg">Я поруч на кожному кроці. Напишіть, коли треба.</div>
+        <div class="acts">
+          <button class="btn"><i class="ri-chat-3-line"></i> Написати</button>
+          <button class="btn ghost"><i class="ri-phone-line"></i> Зателефонувати</button>
+        </div>
+      </div>
+
+      <!-- path progress -->
+      <div class="sec">Твій шлях</div>
+      <div class="card">
+        <div class="row" style="margin-bottom:10px">
+          <div class="grow h2" style="font-size:14px">УБД</div>
+          <span class="xp">6 / 21</span>
+        </div>
+        <div class="bar"><i style="width:29%"></i></div>
+        <div class="pathlink">весь шлях <i class="ri-arrow-right-line"></i></div>
+      </div>
+
+      <!-- active missions -->
+      <div class="sec">Активні місії</div>
+
+      <div class="card">
+        <div class="row">
+          <span class="mtile">💳</span>
+          <div class="grow"><div class="mtitle">Оформи картку ветерана</div></div>
+          <span class="xp">+150 XP</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <span class="mtile">🏃</span>
+          <div class="grow"><div class="mtitle">Заявка «Ветеранський спорт»</div></div>
+          <span class="xp">+200 XP</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="nav">
+      <a class="on"><i class="ri-home-5-fill"></i>Головна</a>
+      <a><i class="ri-price-tag-3-line"></i>Можливості</a>
+      <a><i class="ri-sparkling-2-line"></i>AI-бро</a>
+      <a><i class="ri-file-list-3-line"></i>Мої послуги</a>
+    </div>
+  </div>
+  <div class="cap"><b>Головна · Variant B — «Concierge-first».</b> Специалістка-наставниця як спокійний центр угорі (аватарка з одним ореолом, тепле повідомлення, «Написати» / «Зателефонувати»), нижче — тихий прогрес УБД і дві місії з +XP.</div>
+</div>
+</body>
+</html>
