@@ -12,8 +12,8 @@ interface TabIcon {
 }
 
 const TAB_ICONS: Record<string, TabIcon> = {
-  catalog:      { inactive: "ri:apps-2-line",        active: "ri:apps-2-fill" },
   index:        { inactive: "ri:home-5-line",        active: "ri:home-5-fill" },
+  opportunities:{ inactive: "ri:price-tag-3-line",   active: "ri:price-tag-3-fill" },
   ai:           { inactive: "ri:sparkling-2-line",   active: "ri:sparkling-2-fill" },
   applications: { inactive: "ri:file-list-3-line",   active: "ri:file-list-3-fill" },
 };
@@ -28,7 +28,7 @@ function renderTabIcon(routeName: string, focused: boolean) {
       <MaterialCommunityIcons
         name={mci(name)}
         size={25}
-        color={focused ? colors.brand : colors.inactive}
+        color={focused ? colors.accent : colors.textFaint}
       />
     </View>
   );
@@ -45,8 +45,8 @@ export default function TabsLayout() {
         headerShown: false,
         animation: "shift",
         tabBarShowLabel: true,
-        tabBarActiveTintColor: colors.brand,
-        tabBarInactiveTintColor: colors.inactive,
+        tabBarActiveTintColor: colors.accent,
+        tabBarInactiveTintColor: colors.textFaint,
         tabBarStyle: [
           styles.tabBar,
           {
@@ -59,9 +59,9 @@ export default function TabsLayout() {
         tabBarIcon: ({ focused }) => renderTabIcon(route.name, focused),
       })}
     >
-      <Tabs.Screen name="catalog"      options={{ title: "Каталог" }} />
       <Tabs.Screen name="index"        options={{ title: "Головна" }} />
-      <Tabs.Screen name="ai"           options={{ title: "AI" }} />
+      <Tabs.Screen name="opportunities" options={{ title: "Можливості" }} />
+      <Tabs.Screen name="ai"           options={{ title: "AI-бро" }} />
       <Tabs.Screen name="applications" options={{ title: "Мої послуги" }} />
     </Tabs>
   );
@@ -69,8 +69,8 @@ export default function TabsLayout() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    backgroundColor: colors.white,
-    borderTopColor: colors.beige,
+    backgroundColor: colors.surface,
+    borderTopColor: colors.border,
     borderTopWidth: 1,
     paddingTop: 6,
     overflow: "visible",
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     top: -16,
     height: 3,
     width: 32,
-    backgroundColor: colors.olive,
+    backgroundColor: colors.accent,
     borderBottomLeftRadius: 2,
     borderBottomRightRadius: 2,
   },
