@@ -33,6 +33,22 @@ export const mciFor: Record<string, MciName> = {
   // Misc
   "ri:settings-3-line":      "cog-outline",
   "ri:bookmark-line":        "bookmark-outline",
+
+  // Tabs (new)
+  "ri:price-tag-3-line":     "tag-outline",
+  "ri:price-tag-3-fill":     "tag",
+  // Actions / chrome
+  "ri:qr-code-line":         "qrcode",
+  "ri:chat-3-line":          "chat-outline",
+  "ri:phone-line":           "phone-outline",
+  "ri:arrow-left-s-line":    "chevron-left",
+  "ri:arrow-right-s-line":   "chevron-right",
+  "ri:arrow-down-s-line":    "chevron-down",
+  "ri:arrow-up-line":        "arrow-up",
+  "ri:id-card-line":         "card-account-details-outline",
+  "ri:heart-pulse-line":     "heart-pulse",
+  "ri:close-line":           "close",
+  "ri:check-line":           "check",
 };
 
 /** Resolve a Remix icon name to its MCI counterpart, with a sensible fallback. */
