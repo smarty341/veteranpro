@@ -1,35 +1,29 @@
 // Design tokens carried over from the web app's tokens.css.
 // See: src/ui/tokens.css
 
+// Dark MoVA "inverse/memorial" surface. Values mirror docs/mockups/_brand.css.
 export const colors = {
-  brand:      "#2D2926",
-  beige:      "#E9E4E3",
-  beigeSoft:  "#EFE9E5",
-  border:     "#D1CBCB",
-  muted:      "#6B6664",
-  olive:      "#757341",
-  oliveSoft:  "#B0AB75",
-  white:      "#FFFFFF",
-  inactive:   "#A39E9B",
+  surface:     "#1A1714", // app background (warm near-black)
+  surfaceCard: "#322D2A", // raised cards
+  surfaceCard2:"#3C3633", // nested / pressed
+  border:      "#473F3B", // hairline on dark
+  text:        "#E9E4E3", // primary (paper)
+  textMuted:   "#A89F98", // secondary
+  textFaint:   "#7A736D", // tertiary
+  accent:      "#EE754D", // orange
+  accentPress: "#C9531F",
+  onAccent:    "#241200", // text on orange
+  tintHealth:  "#A19388", // warm gray
+  tintSport:   "#E6E88F", // light
+  tintEdu:     "#B0AB75", // khaki
+  white:       "#FFFFFF", // logo chips only
 } as const;
 
-export const radius = { card: 16, pill: 999, iconTile: 10 } as const;
+export const radius = { card: 14, pill: 999, iconTile: 10 } as const;
 
 export const elevation = {
-  card: {
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 3,
-  },
-  button: {
-    shadowColor: "#2D2926",
-    shadowOpacity: 0.22,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 4,
-  },
+  card:   { shadowColor: "#000", shadowOpacity: 0.18, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 2 },
+  button: { shadowColor: "#000", shadowOpacity: 0.22, shadowRadius: 12, shadowOffset: { width: 0, height: 4 }, elevation: 3 },
 } as const;
 
 export const fontSize = {
