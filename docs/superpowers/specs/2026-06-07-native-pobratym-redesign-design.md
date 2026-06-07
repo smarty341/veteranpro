@@ -76,18 +76,32 @@ success       #B0AB75   (no green in brand; khaki/light stand in)
 
 ## 4. Navigation
 
-Final tab bar (flat line icons retained, active tint = orange):
+Final tab bar — **flat line icons only** (the existing `ri:*` `MaterialCommunityIcons`,
+line variant inactive / fill variant active, active tint = orange). **No emoji in the nav.**
 
-```
-🏠 Головна  |  🏷 Можливості  |  ✨ AI-бро  |  📋 Мої послуги
-```
+| Order | Label | Route | Icon (inactive → active) |
+|---|---|---|---|
+| 1 | Головна | `index` | `ri:home-5-line` → `ri:home-5-fill` |
+| 2 | Можливості | `opportunities` | `ri:price-tag-3-line` → `ri:price-tag-3-fill` |
+| 3 | AI-бро | `ai` | `ri:sparkling-2-line` → `ri:sparkling-2-fill` |
+| 4 | Мої послуги | `applications` | `ri:file-list-3-line` → `ri:file-list-3-fill` |
 
 - **Каталог tab removed.** The category grid (`catalog/index.tsx` + `catalog/[id].tsx`) moves
   under `applications/` (Мої послуги). Routes change from `/(tabs)/catalog/*` to
-  `/(tabs)/applications/catalog/*` (or equivalent nested route).
+  `/(tabs)/applications/catalog/*` (or equivalent nested route). The catalogue's category tiles
+  keep their **flat line icons** (`IconTile` rendering `ri:*` line icons) — unchanged, just
+  recolored for the dark theme.
 - **AI tab** is relabelled **"AI-бро"** (label only; route stays `ai`).
 - New tab **"Можливості"** added (`app/(tabs)/opportunities/`).
 - `app/(tabs)/_layout.tsx` `TAB_ICONS` + `<Tabs.Screen>` order updated accordingly.
+
+### Icon vs emoji policy (applies app-wide)
+
+- **Flat line icons** (`ri:*` via `IconTile` / `MaterialCommunityIcons`) for all navigation
+  chrome and structural UI: the bottom nav, the catalogue/category tiles, headers, list rows.
+- **Emoji** are allowed only in *content* surfaces ported from the prototype: onboarding option
+  rows, mission cards, the streak strip, offer/partner logos. Never in the tab bar or the
+  catalogue grid.
 
 ---
 
