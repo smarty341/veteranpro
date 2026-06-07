@@ -297,17 +297,18 @@ model call.
 
 ## 10. Мої послуги (services) — absorbs the catalogue
 
-`app/(tabs)/applications/index.tsx` (rebuilt) becomes:
-- Top: in-progress / recommended services (re-keyed off `status` + needs via the existing
-  `recommend()` in `lib/recommendations.ts`, adapted to the new profile shape).
-- Below: **all 10 thematic blocks** rendered as sections (Здоров'я та відновлення, Соцзахист і
-  фінанси, Житло та інфраструктура, Транспорт і пільги, Документи та статус, Освіта та робота,
-  Податкові пільги, Спорт та змагання, Гранти та підтримка бізнесу, Послуги по регіону). Each
-  block shows **3–4 example services** as rows (flat `IconTile` line icon + title + meta), tapping
-  a service → its detail screen, and a "Усі" affordance into the category detail. The flat
-  category grid from the old Каталог tab is folded into this view (either as the block headers or
-  a compact grid at the top).
-- The specialist card also surfaces here.
+`app/(tabs)/applications/index.tsx` (rebuilt) keeps the **current codebase logic** (in-progress on
+top, then the category-grid catalogue) — only re-skinned to the dark brand:
+- Top: a **«В роботі»** section — the user's in-progress / selected services (1–2 rows). Re-keyed
+  off `status` + needs via the existing `recommend()` in `lib/recommendations.ts`, adapted to the
+  new profile shape.
+- Below: the **category cards grid** brought back from the current codebase (`catalog/index.tsx`)
+  — a **2-column grid** of the 10 categories, each a card with a **flat line `IconTile`** + name
+  (using `content/categories.ts` icons). Tapping a category → its **category detail screen**, which
+  lists that category's 3–4 real services. This replaces the earlier "all blocks inline as
+  sections" idea — we render the grid, not expanded lists. (Logic ported from the current app; only
+  the design is our dark brand.)
+- The specialist card may also surface here (secondary).
 
 ### Data source — REAL services only (no invented content)
 
