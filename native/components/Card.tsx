@@ -11,8 +11,8 @@ export function Card({ style, children, ...rest }: ViewProps) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
-    borderColor: colors.beige,
+    backgroundColor: colors.surfaceCard,
+    borderColor: colors.border,
     borderWidth: 1,
     borderRadius: radius.card,
     padding: 16,

@@ -18,7 +18,7 @@ export function ScreenContainer({ children, style, ...rest }: ScrollViewProps) {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.beigeSoft },
+  safe: { flex: 1, backgroundColor: colors.surface },
   scroll: { flex: 1 },
   content: { paddingHorizontal: 20, paddingVertical: 16, gap: 12 },
 });

@@ -9,7 +9,7 @@ export function StubScreen({ title, icon }: { title: string; icon: string }) {
     <View style={styles.root}>
       <Header title={title} />
       <View style={styles.center}>
-        <MaterialCommunityIcons name={mci(icon)} size={56} color={colors.brand} />
+        <MaterialCommunityIcons name={mci(icon)} size={56} color={colors.textMuted} />
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.body}>Цей розділ — у повній версії.</Text>
       </View>
@@ -18,8 +18,8 @@ export function StubScreen({ title, icon }: { title: string; icon: string }) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: colors.beigeSoft },
+  root: { flex: 1, backgroundColor: colors.surface },
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 12 },
-  title: { fontSize: fontSize["2xl"], fontWeight: weight.semibold, color: colors.brand },
-  body: { fontSize: fontSize.base, color: colors.muted, textAlign: "center" },
+  title: { fontSize: fontSize["2xl"], fontWeight: weight.semibold, color: colors.text },
+  body: { fontSize: fontSize.base, color: colors.textMuted, textAlign: "center" },
 });

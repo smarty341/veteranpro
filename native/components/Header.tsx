@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   bar: {
     paddingHorizontal: 20,
     paddingBottom: 12,
-    backgroundColor: colors.beigeSoft,
+    backgroundColor: colors.surface,
   },
   brandRow: {
     flexDirection: "row",
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize["2xl"],
     fontWeight: weight.semibold,
-    color: colors.brand,
+    color: colors.text,
     marginTop: 14,
   },
 });

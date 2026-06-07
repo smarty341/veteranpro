@@ -22,8 +22,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-const DOT_INACTIVE = "rgba(45, 41, 38, 0.2)"; // colors.brand at 20% alpha
-
 function Dot({ active }: { active: boolean }) {
   const color = useSharedValue(active ? 1 : 0);
   const scale = useSharedValue(1);
@@ -41,7 +39,7 @@ function Dot({ active }: { active: boolean }) {
   }, [active, color, scale]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    backgroundColor: interpolateColor(color.value, [0, 1], [DOT_INACTIVE, colors.olive]),
+    backgroundColor: interpolateColor(color.value, [0, 1], [colors.border, colors.accent]),
     transform: [{ scale: scale.value }],
   }));
 
@@ -64,7 +62,7 @@ export function OnboardingScaffold({ step, title, subtitle, onSkip, children }: 
               accessibilityLabel="Назад"
               accessibilityRole="button"
             >
-              <MaterialCommunityIcons name="chevron-left" size={28} color={colors.brand} />
+              <MaterialCommunityIcons name="chevron-left" size={28} color={colors.text} />
             </Pressable>
           )}
         </View>
@@ -105,7 +103,7 @@ export function OnboardingScaffold({ step, title, subtitle, onSkip, children }: 
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: colors.beigeSoft },
+  root: { flex: 1, backgroundColor: colors.surface },
   chrome: {
     height: 44,
     paddingHorizontal: 20,
@@ -117,9 +115,9 @@ const styles = StyleSheet.create({
   sideRight: { alignItems: "flex-end" },
   dots: { flexDirection: "row", alignItems: "center", gap: 10 },
   dot: { width: 8, height: 8, borderRadius: 4 },
-  skip: { color: colors.muted, fontSize: fontSize.sm, textDecorationLine: "underline" },
+  skip: { color: colors.textMuted, fontSize: fontSize.sm, textDecorationLine: "underline" },
   body: { flex: 1, paddingHorizontal: 20, paddingTop: 24 },
-  title: { fontSize: fontSize["2xl"], fontWeight: weight.semibold, color: colors.brand },
-  subtitle: { fontSize: fontSize.sm, color: colors.muted, marginTop: 4 },
+  title: { fontSize: fontSize["2xl"], fontWeight: weight.semibold, color: colors.text },
+  subtitle: { fontSize: fontSize.sm, color: colors.textMuted, marginTop: 4 },
   content: { flex: 1, marginTop: 20 },
 });

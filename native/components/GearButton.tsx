@@ -28,7 +28,7 @@ export function GearButton({ size = 24 }: { size?: number }) {
       accessibilityLabel="Налаштування"
       accessibilityRole="button"
     >
-      <MaterialCommunityIcons name="cog-outline" size={size} color={colors.brand} />
+      <MaterialCommunityIcons name="cog-outline" size={size} color={colors.textMuted} />
     </Pressable>
   );
 }

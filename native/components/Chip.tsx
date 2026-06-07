@@ -11,7 +11,7 @@ export function Chip({ children }: { children: string }) {
 
 const styles = StyleSheet.create({
   chip: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.surfaceCard,
     borderColor: colors.border,
     borderWidth: 1,
     borderRadius: radius.pill,
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   label: {
-    color: colors.brand,
+    color: colors.text,
     fontSize: fontSize.sm,
     fontWeight: weight.medium,
   },

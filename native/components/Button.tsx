@@ -23,7 +23,7 @@ export function Button({ children, onPress, ...rest }: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.brand,
+    backgroundColor: colors.accent,
     borderRadius: radius.card,
     paddingVertical: 16,
     paddingHorizontal: 24,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     ...elevation.button,
   },
   label: {
-    color: colors.white,
+    color: colors.onAccent,
     fontSize: fontSize.base,
     fontWeight: weight.semibold,
   },
