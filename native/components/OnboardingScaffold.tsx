@@ -52,7 +52,7 @@ export function OnboardingScaffold({ step, total, title, subtitle, onSkip, child
   const router = useRouter();
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top + 8 }]}>
+    <View style={[styles.root, { paddingTop: insets.top + 8, paddingBottom: Math.max(insets.bottom, 16) }]}>
       <View style={styles.chrome}>
         <View style={styles.side}>
           {step > 1 && (
