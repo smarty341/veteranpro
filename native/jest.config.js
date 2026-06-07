@@ -17,6 +17,7 @@ module.exports = {
           module: "CommonJS",
           strict: true,
           skipLibCheck: true,
+          resolveJsonModule: true,
         },
       },
     ],
