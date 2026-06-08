@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.97 }],
   },
   catName: {
-    fontSize: 14,
+    fontSize: 17,
     fontWeight: weight.medium,
     color: colors.text,
     lineHeight: 17,

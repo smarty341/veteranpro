@@ -137,7 +137,7 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   flbl: {
-    fontSize: 12.5,
+    fontSize: 15,
     fontWeight: weight.semibold,
     color: colors.textMuted,
     textTransform: "uppercase",

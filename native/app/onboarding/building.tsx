@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     paddingBottom: space(2),
   },
   emoji: {
-    fontSize: 33,
+    fontSize: 40,
     lineHeight: 36,
     marginTop: space(6),
   },
@@ -160,14 +160,14 @@ const styles = StyleSheet.create({
   marker: {
     width: 18,
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 19,
     fontWeight: weight.bold,
     lineHeight: 20,
     flexShrink: 0,
   },
   lineText: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 18,
     lineHeight: 19,
     color: colors.text,
   },

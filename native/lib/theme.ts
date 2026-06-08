@@ -27,14 +27,14 @@ export const elevation = {
 } as const;
 
 export const fontSize = {
-  xs:   13,
-  sm:   16,
-  base: 18,
-  lg:   21,
-  xl:   23,
-  "2xl": 27,
-  "3xl": 33,
-  "4xl": 40,
+  xs:   16,
+  sm:   19,
+  base: 22,
+  lg:   25,
+  xl:   28,
+  "2xl": 32,
+  "3xl": 40,
+  "4xl": 48,
 } as const;
 
 export const weight = {

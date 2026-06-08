@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   compactName: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: weight.semibold,
     color: colors.text,
     lineHeight: 18,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   blurb: {
-    fontSize: 15,
+    fontSize: 18,
     color: colors.text,
     lineHeight: 21,
     marginTop: 12,

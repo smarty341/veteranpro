@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     marginBottom: space(4),
   },
   pillText: {
-    fontSize: 12.5,
+    fontSize: 15,
     fontWeight: weight.semibold,
     color: colors.accent,
     letterSpacing: 0.8,
