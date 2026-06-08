@@ -73,12 +73,14 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={[styles.safe, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
+    <View style={[styles.safe, { paddingTop: insets.top }]}>
       <StatusBar style="light" />
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="never"
+        automaticallyAdjustContentInsets={false}
       >
         {/* Header: single greeting + level ring */}
         <View style={styles.header}>
@@ -157,7 +159,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.surface },
   scroll: { flex: 1 },
-  content: { paddingHorizontal: 20, paddingVertical: 12, gap: 14 },
+  content: { paddingHorizontal: 20, paddingTop: 12, paddingBottom: 28, gap: 14 },
 
   header: {
     flexDirection: "row",

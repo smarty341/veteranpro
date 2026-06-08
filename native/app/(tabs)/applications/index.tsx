@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, fontSize, weight, radius, elevation } from "../../../lib/theme";
 import { Card } from "../../../components/Card";
 import { IconTile } from "../../../components/IconTile";
@@ -37,10 +36,9 @@ const IN_PROGRESS = [
 
 export default function ApplicationsScreen() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.root, { paddingBottom: insets.bottom }]}>
+    <View style={styles.root}>
       <StatusBar style="light" />
 
       <Header title="Мої послуги" showGear />
@@ -49,6 +47,8 @@ export default function ApplicationsScreen() {
         style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="never"
+        automaticallyAdjustContentInsets={false}
       >
         {/* Sub */}
         <Text style={styles.sub}>

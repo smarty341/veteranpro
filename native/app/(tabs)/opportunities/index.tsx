@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, fontSize, weight } from "../../../lib/theme";
 import { Header } from "../../../components/Header";
 import { Chip } from "../../../components/Chip";
@@ -13,11 +12,10 @@ import { offers, type Offer } from "../../../content/offers";
 const CHIPS = ["Усі", "Поруч", "Паливо", "Одяг", "Здоров'я"];
 
 export default function OpportunitiesScreen() {
-  const insets = useSafeAreaInsets();
   const [qr, setQr] = useState<Offer | null>(null);
 
   return (
-    <View style={[styles.root, { paddingBottom: insets.bottom }]}>
+    <View style={styles.root}>
       <StatusBar style="light" />
 
       <Header title="Можливості" showGear />
@@ -26,6 +24,8 @@ export default function OpportunitiesScreen() {
         style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="never"
+        automaticallyAdjustContentInsets={false}
       >
         {/* Sub */}
         <Text style={styles.sub}>Знижки та пропозиції для ветеранів.</Text>
