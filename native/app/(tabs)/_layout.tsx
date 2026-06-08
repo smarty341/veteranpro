@@ -95,7 +95,9 @@ export default function TabsLayout() {
       tabBar={(props) => <BottomNav {...props} />}
       screenOptions={{
         headerShown: false,
-        animation: "shift",
+        // "fade" is opacity-only; "shift" translates screens by a
+        // position-dependent amount and glitched the end tabs' layout.
+        animation: "fade",
       }}
     >
       <Tabs.Screen name="index"         options={{ title: "Головна" }} />
