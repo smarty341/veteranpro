@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ChatBubble } from "../../../components/ChatBubble";
 import { TypingDots } from "../../../components/TypingDots";
+import { Header } from "../../../components/Header";
 import { useTypewriter } from "../../../lib/useTypewriter";
 import { mci } from "../../../lib/icons";
 import { aiFallback, aiOpening, aiPrompts, aiReplies } from "../../../content/aiCanned";
@@ -80,26 +81,11 @@ export default function AiScreen() {
   const canSend = openingDone && streamingReply === null && input.trim().length > 0;
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    <View style={styles.root}>
       <StatusBar style="light" />
 
-      {/* header */}
-      <View style={styles.header}>
-        <View style={styles.botAvatar}>
-          <MaterialCommunityIcons
-            name={mci("ri:sparkling-2-fill")}
-            size={20}
-            color={colors.onAccent}
-          />
-        </View>
-        <View>
-          <Text style={styles.headerName}>AI-бро</Text>
-          <View style={styles.statusRow}>
-            <View style={styles.statusDot} />
-            <Text style={styles.statusText}>онлайн</Text>
-          </View>
-        </View>
-      </View>
+      {/* shared logo header (consistent with the other tabs) */}
+      <Header title="AI-бро" />
 
       <KeyboardAvoidingView
         style={styles.flex}
@@ -229,29 +215,6 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.surface },
   flex: { flex: 1 },
 
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: space(2.5),
-    paddingHorizontal: space(4),
-    paddingTop: space(2),
-    paddingBottom: space(3),
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.border,
-  },
-  botAvatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: colors.accent,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerName: { color: colors.text, fontSize: fontSize.sm, fontWeight: weight.semibold },
-  statusRow: { flexDirection: "row", alignItems: "center", gap: space(1.25), marginTop: 2 },
-  statusDot: { width: 7, height: 7, borderRadius: 3.5, backgroundColor: colors.tintEdu },
-  statusText: { color: colors.textMuted, fontSize: fontSize.xs },
-
   messages: {
     paddingVertical: space(4),
     gap: space(0.5),
@@ -270,7 +233,7 @@ const styles = StyleSheet.create({
   },
   botBubbleWrap: { flexShrink: 1 },
 
-  bubbleText: { color: colors.text, fontSize: 17, lineHeight: 24 },
+  bubbleText: { color: colors.text, fontSize: 20, lineHeight: 29 },
   cursor: { color: colors.accent, fontWeight: weight.bold },
 
   chips: {
