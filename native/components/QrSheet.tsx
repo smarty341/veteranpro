@@ -121,13 +121,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   sub: {
-    fontSize: 17,
+    fontSize: 14,
     color: colors.textMuted,
     marginTop: 4,
     textAlign: "center",
   },
   refresh: {
-    fontSize: 15,
+    fontSize: 13,
     color: colors.textFaint,
     marginTop: 6,
     textAlign: "center",

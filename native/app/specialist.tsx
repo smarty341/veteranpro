@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   pillText: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: weight.semibold,
     color: colors.accent,
     letterSpacing: 0.8,

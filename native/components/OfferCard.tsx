@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   discount: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: weight.bold,
     color: colors.accent,
     textAlign: "right",
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   qrLabel: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: weight.medium,
     color: colors.textMuted,
   },

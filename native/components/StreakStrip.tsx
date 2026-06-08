@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", gap: 5, marginTop: 10 },
   cell: { flex: 1, height: 30, borderRadius: 7, backgroundColor: colors.surfaceCard2, alignItems: "center", justifyContent: "center" },
   on: { backgroundColor: "#3a2a20" },
-  txt: { fontSize: 15, color: colors.textFaint },
+  txt: { fontSize: 13, color: colors.textFaint },
   txtOn: { color: colors.accent },
 });

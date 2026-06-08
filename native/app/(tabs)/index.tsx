@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   },
   heroTitleCol: { flex: 1 },
   eyebrow: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: weight.semibold,
     letterSpacing: 0.8,
     textTransform: "uppercase",
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   heroLinkText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: weight.semibold,
     color: colors.accent,
   },
