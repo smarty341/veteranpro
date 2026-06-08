@@ -25,7 +25,6 @@ function renderTabIcon(routeName: string, focused: boolean) {
   const name = focused ? set.active : set.inactive;
   return (
     <View style={styles.iconWrap}>
-      {focused && <View style={styles.activeBar} />}
       <MaterialCommunityIcons
         name={mci(name)}
         size={25}
@@ -75,6 +74,11 @@ function BottomNav({ state, descriptors, navigation }: BottomTabBarProps) {
             accessibilityState={focused ? { selected: true } : {}}
             accessibilityLabel={label}
           >
+            {focused && (
+              <View style={styles.activeBarWrap}>
+                <View style={styles.activeBar} />
+              </View>
+            )}
             {renderTabIcon(route.name, focused)}
             <Text
               style={[styles.tabLabel, { color: focused ? colors.accent : colors.textFaint }]}
@@ -112,15 +116,13 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: "row",
     backgroundColor: colors.surface,
-    paddingTop: 6,
-    overflow: "visible",
   },
   tabItem: {
     flex: 1,
-    paddingVertical: 2,
+    paddingTop: 15,
+    paddingBottom: 2,
     alignItems: "center",
     justifyContent: "flex-start",
-    overflow: "visible",
   },
   tabLabel: {
     fontSize: 13,
@@ -131,9 +133,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  activeBar: {
+  activeBarWrap: {
     position: "absolute",
-    top: -16,
+    top: 0,
+    left: 0,
+    right: 0,
+    alignItems: "center",
+  },
+  activeBar: {
     height: 3,
     width: 32,
     backgroundColor: colors.accent,
