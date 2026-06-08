@@ -61,7 +61,7 @@ export default function HomeScreen() {
 
   const activeMissions: PathStep[] = built.steps
     .filter((s) => !s.done && s.xp && !completedMissionIds.includes(s.id))
-    .slice(0, 2);
+    .slice(0, 3);
 
   const specialist = specialists.find((s) => s.id === profile.assignedSpecialistId);
 
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   },
   heroTitleCol: { flex: 1 },
   eyebrow: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: weight.semibold,
     letterSpacing: 0.8,
     textTransform: "uppercase",
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   heroLinkText: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: weight.semibold,
     color: colors.accent,
   },
