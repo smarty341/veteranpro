@@ -36,6 +36,10 @@ function renderTabIcon(routeName: string, focused: boolean) {
 
 export default function TabsLayout() {
   const insets = useSafeAreaInsets();
+  // Clamp the bottom inset: the home indicator is ~34pt, but the safe-area
+  // context can transiently report a much larger value during tab/keyboard
+  // transitions, which made the tab bar balloon in height. Bound it.
+  const tabBottom = Math.min(insets.bottom, 34);
   return (
     <Tabs
       screenListeners={{
@@ -44,14 +48,15 @@ export default function TabsLayout() {
       screenOptions={({ route }) => ({
         headerShown: false,
         animation: "shift",
+        tabBarHideOnKeyboard: true,
         tabBarShowLabel: true,
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.textFaint,
         tabBarStyle: [
           styles.tabBar,
           {
-            height: 60 + insets.bottom,
-            paddingBottom: insets.bottom + 6,
+            height: 60 + tabBottom,
+            paddingBottom: tabBottom + 6,
           },
         ],
         tabBarItemStyle: styles.tabItem,
