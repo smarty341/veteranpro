@@ -4,7 +4,6 @@ import {
   ScrollView,
   Pressable,
   StyleSheet,
-  Alert,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -64,10 +63,7 @@ export default function CategoryDetailScreen() {
             <Pressable
               key={item.id}
               onPress={() =>
-                Alert.alert(
-                  item.title,
-                  "Повний опис послуги — у повній версії застосунку.",
-                )
+                router.push(`/(tabs)/applications/service/${item.id}` as any)
               }
               style={({ pressed }) => [
                 styles.row,
