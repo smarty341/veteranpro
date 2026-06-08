@@ -1,7 +1,8 @@
 import { Tabs } from "expo-router";
-import { View, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { colors, weight } from "../../lib/theme";
 import { mci } from "../../lib/icons";
 import { tapSelection } from "../../lib/haptics";
@@ -34,53 +35,89 @@ function renderTabIcon(routeName: string, focused: boolean) {
   );
 }
 
-export default function TabsLayout() {
+/**
+ * Custom tab bar with a deterministic, fixed height.
+ *
+ * We render the bar ourselves instead of letting React Navigation own its
+ * height: the library animates/measures the default bar's height, which under
+ * some tab/keyboard transitions made it balloon to 2-3x its size. A plain
+ * View with an explicit height can't do that.
+ */
+function BottomNav({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
-  // Clamp the bottom inset: the home indicator is ~34pt, but the safe-area
-  // context can transiently report a much larger value during tab/keyboard
-  // transitions, which made the tab bar balloon in height. Bound it.
-  const tabBottom = Math.min(insets.bottom, 34);
+  const bottom = Math.min(insets.bottom, 34); // home indicator ~34pt; never more
+
+  return (
+    <View style={[styles.tabBar, { height: 60 + bottom, paddingBottom: bottom + 6 }]}>
+      {state.routes.map((route, index) => {
+        if (!TAB_ICONS[route.name]) return null;
+        const focused = state.index === index;
+        const label = (descriptors[route.key].options.title ?? route.name) as string;
+
+        const onPress = () => {
+          tapSelection();
+          const event = navigation.emit({
+            type: "tabPress",
+            target: route.key,
+            canPreventDefault: true,
+          });
+          if (!focused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
+        };
+
+        return (
+          <Pressable
+            key={route.key}
+            onPress={onPress}
+            style={styles.tabItem}
+            accessibilityRole="button"
+            accessibilityState={focused ? { selected: true } : {}}
+            accessibilityLabel={label}
+          >
+            {renderTabIcon(route.name, focused)}
+            <Text
+              style={[styles.tabLabel, { color: focused ? colors.accent : colors.textFaint }]}
+              numberOfLines={1}
+            >
+              {label}
+            </Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+}
+
+export default function TabsLayout() {
   return (
     <Tabs
-      screenListeners={{
-        tabPress: () => tapSelection(),
-      }}
-      screenOptions={({ route }) => ({
+      tabBar={(props) => <BottomNav {...props} />}
+      screenOptions={{
         headerShown: false,
         animation: "shift",
-        tabBarHideOnKeyboard: true,
-        tabBarShowLabel: true,
-        tabBarActiveTintColor: colors.accent,
-        tabBarInactiveTintColor: colors.textFaint,
-        tabBarStyle: [
-          styles.tabBar,
-          {
-            height: 60 + tabBottom,
-            paddingBottom: tabBottom + 6,
-          },
-        ],
-        tabBarItemStyle: styles.tabItem,
-        tabBarLabelStyle: styles.tabLabel,
-        tabBarIcon: ({ focused }) => renderTabIcon(route.name, focused),
-      })}
+      }}
     >
-      <Tabs.Screen name="index"        options={{ title: "Головна" }} />
+      <Tabs.Screen name="index"         options={{ title: "Головна" }} />
       <Tabs.Screen name="opportunities" options={{ title: "Можливості" }} />
-      <Tabs.Screen name="ai"           options={{ title: "AI-бро" }} />
-      <Tabs.Screen name="applications" options={{ title: "Мої послуги" }} />
+      <Tabs.Screen name="ai"            options={{ title: "AI-бро" }} />
+      <Tabs.Screen name="applications"  options={{ title: "Мої послуги" }} />
     </Tabs>
   );
 }
 
 const styles = StyleSheet.create({
   tabBar: {
+    flexDirection: "row",
     backgroundColor: colors.surface,
-    borderTopWidth: 0,
     paddingTop: 6,
     overflow: "visible",
   },
   tabItem: {
+    flex: 1,
     paddingVertical: 2,
+    alignItems: "center",
+    justifyContent: "flex-start",
     overflow: "visible",
   },
   tabLabel: {
