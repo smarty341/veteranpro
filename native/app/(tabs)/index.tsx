@@ -140,13 +140,12 @@ export default function HomeScreen() {
         {specialist && (
           <>
             <Text style={styles.section}>Твій супровід</Text>
-            <SpecialistCard
-              specialist={specialist}
-              compact
-              onContact={() =>
-                Alert.alert(specialist.name, "Чат із фахівцем — у повній версії.")
-              }
-            />
+            <Pressable
+              onPress={() => router.push("/specialist" as any)}
+              style={({ pressed }) => [{ opacity: pressed ? 0.85 : 1 }]}
+            >
+              <SpecialistCard specialist={specialist} prominent />
+            </Pressable>
           </>
         )}
       </ScrollView>

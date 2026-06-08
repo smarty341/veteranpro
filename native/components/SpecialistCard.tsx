@@ -8,11 +8,33 @@ import type { Specialist } from "../content/specialists";
 export interface SpecialistCardProps {
   specialist: Specialist;
   compact?: boolean;
+  /** Prominent home-screen card: avatar + name + role + blurb + CTA. */
+  prominent?: boolean;
   onContact?: () => void;
 }
 
-export function SpecialistCard({ specialist, compact = false, onContact }: SpecialistCardProps) {
+export function SpecialistCard({ specialist, compact = false, prominent = false, onContact }: SpecialistCardProps) {
   const tintColor = colors[specialist.tint];
+
+  if (prominent) {
+    return (
+      <Card style={styles.homeCard}>
+        <View style={styles.homeTop}>
+          <Avatar initials={specialist.initials} size={54} tint={tintColor} />
+          <View style={styles.homeHead}>
+            <Text style={styles.homeName} numberOfLines={1}>{specialist.name}</Text>
+            <Text style={styles.homeRole} numberOfLines={2}>{specialist.role}</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-right" size={24} color={colors.textFaint} />
+        </View>
+        <Text style={styles.homeBlurb} numberOfLines={2}>«{specialist.blurb}»</Text>
+        <View style={styles.homeCta}>
+          <MaterialCommunityIcons name="chat-outline" size={18} color={colors.accent} />
+          <Text style={styles.homeCtaText}>Написати</Text>
+        </View>
+      </Card>
+    );
+  }
 
   if (compact) {
     return (
@@ -61,6 +83,52 @@ export function SpecialistCard({ specialist, compact = false, onContact }: Speci
 }
 
 const styles = StyleSheet.create({
+  // ── prominent home card ──────────────────────────────────────────
+  homeCard: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    gap: 12,
+  },
+  homeTop: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 13,
+  },
+  homeHead: {
+    flex: 1,
+  },
+  homeName: {
+    fontSize: fontSize.lg,
+    fontWeight: weight.semibold,
+    color: colors.text,
+  },
+  homeRole: {
+    fontSize: fontSize.sm,
+    color: colors.textMuted,
+    marginTop: 2,
+  },
+  homeBlurb: {
+    fontSize: fontSize.sm,
+    color: colors.text,
+    lineHeight: fontSize.sm * 1.35,
+  },
+  homeCta: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+    alignSelf: "flex-start",
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.pill,
+    paddingVertical: 9,
+    paddingHorizontal: 16,
+  },
+  homeCtaText: {
+    fontSize: fontSize.sm,
+    fontWeight: weight.semibold,
+    color: colors.accent,
+  },
+
   // ── compact row ──────────────────────────────────────────────────
   compactRow: {
     flexDirection: "row",
