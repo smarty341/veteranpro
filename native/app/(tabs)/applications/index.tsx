@@ -12,6 +12,7 @@ import { Card } from "../../../components/Card";
 import { IconTile } from "../../../components/IconTile";
 import { ProgressBar } from "../../../components/ProgressBar";
 import { Header } from "../../../components/Header";
+import { TabSwipe } from "../../../components/TabSwipe";
 import { categories } from "../../../content/categories";
 
 // ── mock in-progress items ────────────────────────────────────────────────────
@@ -38,6 +39,7 @@ export default function ApplicationsScreen() {
   const router = useRouter();
 
   return (
+    <TabSwipe tab="applications">
     <View style={styles.root}>
       <StatusBar style="light" />
 
@@ -102,6 +104,7 @@ export default function ApplicationsScreen() {
         </View>
       </ScrollView>
     </View>
+    </TabSwipe>
   );
 }
 

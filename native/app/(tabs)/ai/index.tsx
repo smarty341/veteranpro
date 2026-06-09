@@ -15,6 +15,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ChatBubble } from "../../../components/ChatBubble";
 import { TypingDots } from "../../../components/TypingDots";
 import { Header } from "../../../components/Header";
+import { TabSwipe } from "../../../components/TabSwipe";
 import { useTypewriter } from "../../../lib/useTypewriter";
 import { mci } from "../../../lib/icons";
 import { aiFallback, aiOpening, aiPrompts, aiReplies } from "../../../content/aiCanned";
@@ -81,6 +82,7 @@ export default function AiScreen() {
   const canSend = openingDone && streamingReply === null && input.trim().length > 0;
 
   return (
+    <TabSwipe tab="ai">
     <View style={styles.root}>
       <StatusBar style="light" />
 
@@ -192,6 +194,7 @@ export default function AiScreen() {
         </View>
       </KeyboardAvoidingView>
     </View>
+    </TabSwipe>
   );
 }
 

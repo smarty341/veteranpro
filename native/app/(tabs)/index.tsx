@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 import { Card } from "../../components/Card";
+import { TabSwipe } from "../../components/TabSwipe";
 import { LevelRing } from "../../components/LevelRing";
 import { ProgressBar } from "../../components/ProgressBar";
 import { StreakStrip } from "../../components/StreakStrip";
@@ -73,6 +74,7 @@ export default function HomeScreen() {
   };
 
   return (
+    <TabSwipe tab="index">
     <View style={[styles.safe, { paddingTop: insets.top }]}>
       <StatusBar style="light" />
       <ScrollView
@@ -153,6 +155,7 @@ export default function HomeScreen() {
         )}
       </ScrollView>
     </View>
+    </TabSwipe>
   );
 }
 

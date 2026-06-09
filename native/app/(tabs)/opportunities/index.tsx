@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { colors, fontSize, weight } from "../../../lib/theme";
 import { Header } from "../../../components/Header";
+import { TabSwipe } from "../../../components/TabSwipe";
 import { Chip } from "../../../components/Chip";
 import { OfferCard } from "../../../components/OfferCard";
 import { QrSheet } from "../../../components/QrSheet";
@@ -15,6 +16,7 @@ export default function OpportunitiesScreen() {
   const [qr, setQr] = useState<Offer | null>(null);
 
   return (
+    <TabSwipe tab="opportunities">
     <View style={styles.root}>
       <StatusBar style="light" />
 
@@ -55,6 +57,7 @@ export default function OpportunitiesScreen() {
         onClose={() => setQr(null)}
       />
     </View>
+    </TabSwipe>
   );
 }
 
